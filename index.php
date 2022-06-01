@@ -40,7 +40,7 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button id="submit" type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
                         <div id="loginError" class="mt-3 alert alert-danger fade" vertical-center>
                             <span class="align-middle msg-login">Login Error</span>
