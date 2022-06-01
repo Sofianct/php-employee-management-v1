@@ -13,39 +13,24 @@ formLogin.addEventListener('submit', (e) => {
 
 });
 
-//send post data form to loginController.php
-const sendDataForm = async ((url, data) => {
-    
-    const response = await fetch(url, {
-        method : 'post',
-        // headers: {"content-type":"application/json"},
-        body : data
-    });
 
+//send data form to logincontroller.php and handle response
+async function sendDataForm(url, dataForm) {
+
+    const response = await fetch(url, {
+        method: 'post',
+        body: dataForm
+    });
 
     const data = await response.text();
 
-    if(data == true) {
+    if (data == true) {
         window.location.href = "./src/dashboard.php";
-    }else{
+    } else {
         console.log("error");
+        const loginError = document.getElementById("loginError");
+        loginError.classList.add("show");
+        loginError.textContent = "Wrong email or password";
     }
 
-});
-
-
-    
-fetch(url, {
-    method : 'post',
-    // headers: {"content-type":"application/json"},
-    body : data
-}).then((response) => {
-    response.text();
-}).then((text) => {
-    console.log(text);
-}).catch((error) => {
-    console.log(error);
-    const loginError = document.getElementById("loginError");
-    loginError.classList.add("show");
-    loginError.textContent = error.message;
-})
+};

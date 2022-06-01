@@ -1,11 +1,10 @@
 <?php
-require_once("./loginManager.php");
+require('./loginManager.php');
 
-var_dump($_POST["email"]);
 
 //Login
-if (isset($_POST['submit'])) {
-    //call to authorize user
+if (isset($_POST['email'])) {
+    echo authUser();
 }
 
 //Logout
