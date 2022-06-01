@@ -13,22 +13,23 @@ formLogin.addEventListener('submit', (e) => {
 
 });
 
-//send post data form to loginController.php
-const sendDataForm = ((url, data) => {
-    
-        fetch(url, {
-            method : 'post',
-            // headers: {"content-type":"application/json"},
-            body : data
-        }).then((response) => {
-            return response.text();
-        }).then((text) => {
-            console.log(text);
-        }).catch((error) => {
-            console.log(error);
-            const loginError = document.getElementById("loginError");
-            loginError.classList.add("show");
-            loginError.textContent = error.message;
-        })
+async function sendDataForm(url, dataForm){
 
-});
+    const response = await fetch(url, {
+        method : 'post',
+        body : dataForm
+    });
+
+    const data = await response.text();
+
+    if(data == true) {
+        window.location.href = "./src/dashboard.php";
+    }else{
+        console.log("error");
+        const loginError = document.getElementById("loginError");
+        loginError.classList.add("show");
+        loginError.textContent = "Wrong email or password";
+    }
+
+
+};
