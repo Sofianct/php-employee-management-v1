@@ -1,0 +1,6 @@
+	@import url(./normalize.css);
+    
+    /* Custom style */
+    .navbar{
+        margin-bottom: 1rem;
+    }

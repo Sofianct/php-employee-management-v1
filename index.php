@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
     <script src="./assets/js/index.js" defer></script>
     <link rel="stylesheet" href="./assets/css/login.css">
-    <title>Employee Management</title>
+    <title>Employee Management - Login</title>
 </head>
 
 <body>

@@ -14,21 +14,38 @@ formLogin.addEventListener('submit', (e) => {
 });
 
 //send post data form to loginController.php
-const sendDataForm = ((url, data) => {
+const sendDataForm = async ((url, data) => {
     
-        fetch(url, {
-            method : 'post',
-            // headers: {"content-type":"application/json"},
-            body : data
-        }).then((response) => {
-            return response.text();
-        }).then((text) => {
-            console.log(text);
-        }).catch((error) => {
-            console.log(error);
-            const loginError = document.getElementById("loginError");
-            loginError.classList.add("show");
-            loginError.textContent = error.message;
-        })
+    const response = await fetch(url, {
+        method : 'post',
+        // headers: {"content-type":"application/json"},
+        body : data
+    });
+
+
+    const data = await response.text();
+
+    if(data == true) {
+        window.location.href = "./src/dashboard.php";
+    }else{
+        console.log("error");
+    }
 
 });
+
+
+    
+fetch(url, {
+    method : 'post',
+    // headers: {"content-type":"application/json"},
+    body : data
+}).then((response) => {
+    response.text();
+}).then((text) => {
+    console.log(text);
+}).catch((error) => {
+    console.log(error);
+    const loginError = document.getElementById("loginError");
+    loginError.classList.add("show");
+    loginError.textContent = error.message;
+})
