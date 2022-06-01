@@ -8,12 +8,12 @@
         "city": "San Jone",
         "streetAddress": "126",
         "state": "CA",
-        "age": "24",
+        "age": 24,
         "postalCode": "394221",
         "phoneNumber": "7383627627"
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "John",
         "lastName": "Doe",
         "email": "jhondoe@foo.com",
@@ -21,7 +21,7 @@
         "city": "New York",
         "streetAddress": "89",
         "state": "WA",
-        "age": "34",
+        "age": 34,
         "postalCode": "09889",
         "phoneNumber": "1283645645"
     },
@@ -34,7 +34,7 @@
         "city": "San Diego",
         "streetAddress": "55",
         "state": "CA",
-        "age": "29",
+        "age": 29,
         "postalCode": "098765",
         "phoneNumber": "9983632461"
     },
@@ -87,11 +87,11 @@
         "streetAddress": "1",
         "city": "Nashville",
         "state": "TN",
-        "postalCode": 90143,
+        "postalCode": "90143",
         "phoneNumber": "45372788192"
     },
     {
-        "id": "8",
+        "id": 8,
         "name": "Robert",
         "lastName": "Thomson",
         "email": "jackon@network.com",
@@ -100,7 +100,7 @@
         "streetAddress": "126",
         "city": "New Orleans",
         "state": "LU",
-        "postalCode": 63281,
+        "postalCode": "63281",
         "phoneNumber": "91232876454"
     }
 ]

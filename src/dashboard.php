@@ -10,6 +10,9 @@ require_once("./library/employeeManager.php");
 //get employees
 $employees = json_decode(file_get_contents(dirname(__DIR__) . './resources/employees.json'), true);
 
+echo "<pre>";
+var_dump($employees);
+
 ?>
 
 <!DOCTYPE html>
