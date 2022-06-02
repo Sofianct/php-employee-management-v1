@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
-    <script src="./assets/js/index.js" defer></script>
     <link rel="stylesheet" href="./assets/css/login.css">
     <title>Employee Management - Login</title>
 </head>
@@ -51,6 +50,47 @@
             </div>
         </div>
     </section>
+
+    <script>
+
+        //Variables
+        const formLogin = document.getElementById("login");
+
+        //submit form
+        formLogin.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const url = "./src/library/loginController.php";
+            // const data = {};
+            const formData = new FormData(e.target);
+            //convert form data to json
+            // formData.forEach((value, key) => (data[key] = value));
+            sendDataForm(url, formData);
+
+        });
+
+        //send data form to logincontroller.php and handle response
+        async function sendDataForm(url, dataForm) {
+
+            const response = await fetch(url, {
+                method: 'POST',
+                body: dataForm
+            });
+
+            const data = await response.text();
+
+            if (data == true) {
+                window.location.href = "./src/dashboard.php";
+            } else {
+                console.log("error");
+                const loginError = document.getElementById("loginError");
+                loginError.classList.add("show");
+                loginError.textContent = "Wrong email or password";
+            }
+
+        };
+
+    </script>
 </body>
 
 </html>

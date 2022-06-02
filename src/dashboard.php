@@ -49,27 +49,27 @@
 
         <?php foreach ($employees as $person) : ?>
 
-          <tr>
+          <tr id="row<?= $person['id'] ?>">
             <td>
               <!-- add image -->
               <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
             </td>
             <!-- name -->
-            <td><?= $person['name'] ?></td>
+            <td data-td><?= $person['name'] ?></td>
             <!-- Email -->
-            <td><?= $person['email'] ?></td>
+            <td data-td><?= $person['email'] ?></td>
             <!-- Age -->
-            <td><?= $person['age'] ?></td>
+            <td data-td><?= $person['age'] ?></td>
             <!-- Street no -->
-            <td><?= $person['streetAddress'] ?></td>
+            <td data-td><?= $person['streetAddress'] ?></td>
             <!-- City -->
-            <td><?= $person['city'] ?></td>
+            <td data-td><?= $person['city'] ?></td>
             <!-- State -->
-            <td><?= $person['state'] ?></td>
+            <td data-td><?= $person['state'] ?></td>
             <!-- Postal Code -->
-            <td><?= $person['postalCode'] ?></td>
+            <td data-td><?= $person['postalCode'] ?></td>
             <!-- Phone number -->
-            <td><?= $person['phoneNumber'] ?></td>
+            <td data-td><?= $person['phoneNumber'] ?></td>
             <!-- Buttons -->
             <td>
               <button data-id="<?= $person['id'] ?>" data-edit class="btn"><i class="fa-solid fa-pen-to-square link-dark p-2"></i></button>

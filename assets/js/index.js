@@ -1,46 +1,75 @@
-//Variables Login
-const formLogin = document.getElementById("login");
-
 //Variables Dashboard Frame
 const editButtons = document.querySelectorAll("[data-edit]");
 const deleteButtons = document.querySelectorAll("[data-delete]");
+const urlManagerController = "./library/employeeController.php";
 
 
-//submit form
-formLogin.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const url = "./src/library/loginController.php";
-    // const data = {};
-    const formData = new FormData(e.target);
-    //convert form data to json
-    // formData.forEach((value, key) => (data[key] = value));
-    sendDataForm(url, formData);
-
+//Add edit event listener to all edit buttons
+Array.from(editButtons).map(btn => {
+    btn.addEventListener('click', (e) => {
+        const employeeId = e.currentTarget.getAttribute('data-id'); //get ID
+        const employee = getEmployee(employeeId); //get data employee
+        console.log(employee);
+        // showEditRow(e); //show edit form row
+    });
 });
 
+//Add delete event listener to all delete buttons
+Array.from(deleteButtons).map(btn => {
+    btn.addEventListener('click', (e) => {
+        const employeeId = e.currentTarget.getAttribute('data-id');
+        deleteEmployee(urlManagerController, employeeId);
+    });
+});
 
-//send data form to logincontroller.php and handle response
-async function sendDataForm(url, dataForm) {
+//fetch to edit employee
+async function editEmployee(url, id) {
 
     const response = await fetch(url, {
-        method: 'post',
-        body: dataForm
+        method: "PUT",
+        body: id,
     });
 
     const data = await response.text();
+    console.log(data);
+}
 
-    if (data == true) {
-        window.location.href = "./src/dashboard.php";
-    } else {
-        console.log("error");
-        const loginError = document.getElementById("loginError");
-        loginError.classList.add("show");
-        loginError.textContent = "Wrong email or password";
-    }
+//fetch to delete employee
+async function deleteEmployee(url, id) {
 
-};
+    const response = await fetch(url, {
+        method: "DELETE",
+        body: id,
+    });
 
-//Add edit event listener to all edit buttons
+    const data = await response.text();
+    console.log(data);
+}
 
-//Add delete event listener to all delete buttons
+//get data employee
+async function getEmployee($id) {
+    const response = await fetch(urlManagerController, {
+        method: "GET",
+        body: $id,
+    });
+
+    const data = response.text();
+    console.log(data);
+    return data;
+}
+
+//show edit form in row target
+function showEditRow(employee, id) {
+    const idRow = `row${id}`;
+    const employeeRow = document.getElementById(idRow);
+
+    //get all data from tr
+    const employeeDataSelector = employeeRow.querySelectorAll('[data-td]');
+    let employeeData = [];
+
+    Array.from(employeeDataSelector).map(data => {
+        employeeData.push(data.textContent);
+    })
+
+    
+}
