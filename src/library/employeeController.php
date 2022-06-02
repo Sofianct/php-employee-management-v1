@@ -20,6 +20,8 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 $id = $_GET['id'];
                 echo json_encode(getEmployee($id));
                 break;
+            } else{
+                echo json_encode(getEmployees());
             }
         case 'DELETE':
             $id = trim(file_get_contents("php://input"));
@@ -34,3 +36,4 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
     }
 }
 
+// getEmployee();

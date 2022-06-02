@@ -32,7 +32,7 @@ function updateEmployee(array $updateEmployee)
 }
 
 
-function getEmployee(string $id)
+function getEmployee() //string $id as param
 {
     $employees = getEmployees();
     foreach ($employees as $employee) {
@@ -41,6 +41,13 @@ function getEmployee(string $id)
         }
     }
     return null;
+    // TODO implement it
+    //get employee info and return that info 
+
+    //get employees
+    // $employees = (file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'));
+
+    // echo $employees;
 }
 
 
@@ -50,14 +57,20 @@ function removeAvatar($id)
 }
 
 
-function getQueryStringParameters(): array
+function getQueryStringParameters() //: array
 {
+<<<<<<< HEAD
     return array();
+=======
+>>>>>>> develop
     // TODO implement it
 }
 
-function getNextIdentifier(array $employeesCollection): int
+function getNextIdentifier(array $employeesCollection) //: int
 {
+<<<<<<< HEAD
     return 1;
+=======
+>>>>>>> develop
     // TODO implement it
 }
