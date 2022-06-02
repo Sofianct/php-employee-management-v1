@@ -1,4 +1,10 @@
+//Variables Login
 const formLogin = document.getElementById("login");
+
+//Variables Dashboard Frame
+const editButtons = document.querySelectorAll("[data-edit]");
+const deleteButtons = document.querySelectorAll("[data-delete]");
+
 
 //submit form
 formLogin.addEventListener('submit', (e) => {
@@ -34,3 +40,7 @@ async function sendDataForm(url, dataForm) {
     }
 
 };
+
+//Add edit event listener to all edit buttons
+
+//Add delete event listener to all delete buttons

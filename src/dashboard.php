@@ -72,8 +72,8 @@
             <td><?= $person['phoneNumber'] ?></td>
             <!-- Buttons -->
             <td>
-              <a href="#"><i class="fa-solid fa-pen-to-square link-dark p-2"></i></a>
-              <a href="#"><i class="fa-solid fa-trash-can link-dark"></i></a>
+              <button data-id="<?= $person['id'] ?>" data-edit class="btn"><i class="fa-solid fa-pen-to-square link-dark p-2"></i></button>
+              <button data-id="<?= $person['id'] ?>" data-delete class="btn"><i class="fa-solid fa-trash-can link-dark"></i></button>
             </td>
           </tr>
 
