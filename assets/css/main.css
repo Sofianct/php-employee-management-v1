@@ -1,16 +1,10 @@
 	@import url(./normalize.css);
-    
-    /* Custom style */
-    .navbar{
-        margin-bottom: 1rem;
-    }
 
-    .profile-img{
-        margin-top: -5px;
-        margin-right: 5px;
-        float: left;
-        background: url(example.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
-        background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
-        width: 30px;
-        height: 30px;
-    }
+	/* Custom style */
+	.navbar {
+	    margin-bottom: 1rem;
+	}
+
+	a:link {
+	    text-decoration: none;
+	}
