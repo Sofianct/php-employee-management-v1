@@ -25,8 +25,10 @@
 
     //first of all call checksession 
 
+
     //get employees
     $employees = json_decode(file_get_contents(dirname(__DIR__) . './resources/employees.json'), true);
+
 
     ?>
 

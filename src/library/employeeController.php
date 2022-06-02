@@ -10,16 +10,17 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
     $requestType = $_SERVER['REQUEST_METHOD'];
 
-    echo $requestType;
-
     //switch statement
     switch ($requestType) {
         case 'POST':
 
             break;
         case 'GET':
-            
-            break;
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                echo json_encode(getEmployee($id));
+                break;
+            }
         case 'DELETE':
             $id = trim(file_get_contents("php://input"));
             deleteEmployee($id);

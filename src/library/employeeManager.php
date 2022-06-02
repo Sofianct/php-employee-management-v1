@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EMPLOYEE FUNCTIONS LIBRARY
  *
@@ -6,42 +7,57 @@
  * @date: 11/06/2020
  */
 
+function getEmployees()
+{
+    //get employees
+    $employees = json_decode(file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'), true);
+    return $employees;
+}
+
 function addEmployee(array $newEmployee)
 {
-// TODO implement it
+    // TODO implement it
 }
 
 
 function deleteEmployee(string $id)
 {
-// TODO implement it
+    // TODO implement it
 }
 
 
 function updateEmployee(array $updateEmployee)
 {
-// TODO implement it
+    // TODO implement it
 }
 
 
 function getEmployee(string $id)
 {
-// TODO implement it
+    $employees = getEmployees();
+    foreach ($employees as $employee) {
+        if ($employee["id"] == $id) {
+            return $employee;
+        }
+    }
+    return null;
 }
 
 
 function removeAvatar($id)
 {
-// TODO implement it
+    // TODO implement it
 }
 
 
 function getQueryStringParameters(): array
 {
-// TODO implement it
+    return array();
+    // TODO implement it
 }
 
 function getNextIdentifier(array $employeesCollection): int
 {
-// TODO implement it
+    return 1;
+    // TODO implement it
 }
