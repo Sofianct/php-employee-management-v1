@@ -45,7 +45,7 @@
           <th><a href="#" class="link-dark "><i class="fa-solid fa-plus"></i></a></th>
         </tr>
       </thead>
-      <tbody> 
+      <tbody>
 
         <?php foreach ($employees as $person) : ?>
 
@@ -55,30 +55,30 @@
               <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
             </td>
             <!-- name -->
-            <td><?php echo $person['name'] ?></td>
+            <td><?= $person['name'] ?></td>
             <!-- Email -->
-            <td><?php echo $person['email'] ?></td>
+            <td><?= $person['email'] ?></td>
             <!-- Age -->
-            <td><?php echo $person['age'] ?></td>
+            <td><?= $person['age'] ?></td>
             <!-- Street no -->
-            <td><?php echo $person['streetAddress'] ?></td>
+            <td><?= $person['streetAddress'] ?></td>
             <!-- City -->
-            <td><?php echo $person['city'] ?></td>
+            <td><?= $person['city'] ?></td>
             <!-- State -->
-            <td><?php echo $person['state'] ?></td>
+            <td><?= $person['state'] ?></td>
             <!-- Postal Code -->
-            <td><?php echo $person['postalCode'] ?></td>
+            <td><?= $person['postalCode'] ?></td>
             <!-- Phone number -->
-            <td><?php echo $person['phoneNumber'] ?></td>
+            <td><?= $person['phoneNumber'] ?></td>
             <!-- Buttons -->
             <td>
               <a href="#"><i class="fa-solid fa-pen-to-square link-dark p-2"></i></a>
               <a href="#"><i class="fa-solid fa-trash-can link-dark"></i></a>
             </td>
-          </tr> 
+          </tr>
 
         <?php endforeach; ?>
-        
+
       </tbody>
     </table>
 
