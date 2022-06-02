@@ -17,51 +17,51 @@ async function getEmployees() {
     });
     const data = await res.json();
     console.log(data);
-    // data.forEach(employee => {
-    //     const tbody = document.getElementById('tbody');
-    //     const tr = document.createElement('tr');
-    //     const imgtd = document.createElement('td');
-    //     const img = document.createElement('img');
-    //     const name = document.createElement('td');
-    //     const email = document.createElement('td');
-    //     const age = document.createElement('td');
-    //     const streetNo = document.createElement('td');
-    //     const city = document.createElement('td');
-    //     const state = document.createElement('td');
-    //     const posCode = document.createElement('td');
-    //     const phNumber = document.createElement('td');
-    //     const btns = document.createElement('td');
-    //     const editBtn = document.createElement('button');
-    //     const deleteBtn = document.createElement('button');
-    //     const editIcon = document.createElement('i');
-    //     const deleteIcon = document.createElement('i');
+    data.forEach(employee => {
+        const tbody = document.getElementById('tbody');
+        const tr = document.createElement('tr');
+        const imgtd = document.createElement('td');
+        const img = document.createElement('img');
+        const name = document.createElement('td');
+        const email = document.createElement('td');
+        const age = document.createElement('td');
+        const streetNo = document.createElement('td');
+        const city = document.createElement('td');
+        const state = document.createElement('td');
+        const posCode = document.createElement('td');
+        const phNumber = document.createElement('td');
+        const btns = document.createElement('td');
+        const editBtn = document.createElement('button');
+        const deleteBtn = document.createElement('button');
+        const editIcon = document.createElement('i');
+        const deleteIcon = document.createElement('i');
 
-    //     editIcon.classList.add('fa-solid', 'fa-pen-to-square', 'link-dark', 'p-2');
-    //     deleteIcon.classList.add('fa-solid', 'fa-trash-can', 'link-dark');
-    //     editBtn.classList.add('btn', 'btn-link');
-    //     deleteBtn.classList.add('btn', 'btn-link');
-    //     editBtn.appendChild(editIcon);
-    //     deleteBtn.appendChild(deleteIcon);
-    //     btns.append(editBtn, deleteBtn);
+        editIcon.classList.add('fa-solid', 'fa-pen-to-square', 'link-dark', 'p-2');
+        deleteIcon.classList.add('fa-solid', 'fa-trash-can', 'link-dark');
+        editBtn.classList.add('btn', 'btn-link');
+        deleteBtn.classList.add('btn', 'btn-link');
+        editBtn.appendChild(editIcon);
+        deleteBtn.appendChild(deleteIcon);
+        btns.append(editBtn, deleteBtn);
 
-    //     img.setAttribute('src', 'https://mdbootstrap.com/img/new/avatars/8.jpg');
-    //     img.classList.add('rounded-circle');
-    //     img.style.width = "45px";
-    //     img.style.height = "45px";
-    //     imgtd.appendChild(img);
+        img.setAttribute('src', 'https://mdbootstrap.com/img/new/avatars/8.jpg');
+        img.classList.add('rounded-circle');
+        img.style.width = "45px";
+        img.style.height = "45px";
+        imgtd.appendChild(img);
 
-    //     name.textContent = employee.name + ' ' + employee.lastName;
-    //     email.textContent = employee.email;
-    //     age.textContent = employee.age;
-    //     streetNo.textContent = employee.streetAddress;
-    //     city.textContent = employee.city;
-    //     state.textContent = employee.state;
-    //     posCode.textContent = employee.postalCode;
-    //     phNumber.textContent = employee.phoneNumber;
+        name.textContent = employee.name + ' ' + employee.lastName;
+        email.textContent = employee.email;
+        age.textContent = employee.age;
+        streetNo.textContent = employee.streetAddress;
+        city.textContent = employee.city;
+        state.textContent = employee.state;
+        posCode.textContent = employee.postalCode;
+        phNumber.textContent = employee.phoneNumber;
 
-    //     tr.append(imgtd, name, email, age, streetNo, city, state, posCode, phNumber, btns);
-    //     tbody.append(tr);
-    // });
+        tr.append(imgtd, name, email, age, streetNo, city, state, posCode, phNumber, btns);
+        tbody.append(tr);
+    });
 }
 
 

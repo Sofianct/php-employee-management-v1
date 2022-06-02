@@ -32,7 +32,7 @@ function updateEmployee(array $updateEmployee)
 }
 
 
-function getEmployee() //string $id as param
+function getEmployee($id) //string $id as param
 {
     $employees = getEmployees();
     foreach ($employees as $employee) {
@@ -59,18 +59,12 @@ function removeAvatar($id)
 
 function getQueryStringParameters() //: array
 {
-<<<<<<< HEAD
     return array();
-=======
->>>>>>> develop
     // TODO implement it
 }
 
 function getNextIdentifier(array $employeesCollection) //: int
 {
-<<<<<<< HEAD
     return 1;
-=======
->>>>>>> develop
     // TODO implement it
 }
