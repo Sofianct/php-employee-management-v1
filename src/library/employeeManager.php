@@ -20,22 +20,30 @@ function addEmployee(array $newEmployee)
 }
 
 
-function deleteEmployee(string $id)
+function deleteEmployee($id)
 {
-    // TODO implement it
+
+    $employees = getEmployees();
+    foreach ($employees as $key => $employee) {
+        if ($employee["id"] == $id) {
+            array_splice($employees, $key, 1);
+        }
+    }
+    saveDate($employees);
 }
 
 
 function updateEmployee(array $updateEmployee)
 {
+    // header('Content-type: text/javascript');
     $employees = getEmployees();
     foreach ($employees as $key => $employee) {
-        if($employee["id"] == $updateEmployee["id"]){
-            
+        if ($employee["id"] == $updateEmployee["id"]) {
+            $employees[$key] = array_merge($employee, $updateEmployee);
+            saveDate($employees);
+            return $employees[$key];
         }
     }
-
-    // TODO implement it
 }
 
 
@@ -48,15 +56,15 @@ function getEmployee($id) //string $id as param
         }
     }
     return null;
-    // TODO implement it
-    //get employee info and return that info 
-
-    //get employees
-    // $employees = (file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'));
-
-    // echo $employees;
 }
 
+
+function saveDate($data)
+{
+    $pathDir = dirname(__DIR__, 2);
+    $pathDb = './resources/employees.json';
+    file_put_contents($pathDir . $pathDb, json_encode($data, JSON_PRETTY_PRINT));
+}
 
 function removeAvatar($id)
 {

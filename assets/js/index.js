@@ -1,6 +1,6 @@
 //Variables URL PHP Controller
-
-
+const deleteButtonModal = document.getElementById("deleteBtnModal");
+const idInputModal = document.getElementById("idEmployee");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
 
@@ -30,8 +30,8 @@ window.onload = async () => {
         // Add delete event listener to all delete buttons
         Array.from(deleteButtons).map(btn => {
             btn.addEventListener('click', (e) => {
-                const employeeId = e.target.getAttribute('data-id');
-                deleteEmployee(urlManagerController, employeeId);
+                const employeeId = e.target.parentElement.getAttribute('data-id');
+                deleteEmployee(employeeId);
             });
         });
     }
@@ -135,15 +135,17 @@ window.onload = async () => {
         <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control" required>
         </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="text" name="phoneNumber" class="form-control" required></td>
         <td><div class="d-flex justify-content-center">
-        <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check"></i></button>
-        <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark"></i></button>
+        <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
+        <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
         </div></td></form>`;
 
         employeeRow.parentElement.insertAdjacentElement("afterbegin", editRow);
         toogleDisplay(employeeRow);
 
+        //submit form for editting employee
         const formEditEmployee = document.getElementById("editFormRow");
-        formEditEmployee.addEventListener("submit", (e) => {
+        formEditEmployee.addEventListener("submit", async (e) => {
+
             e.preventDefault();
             const formData = new FormData(e.target);
             //convert form data to json
@@ -153,8 +155,9 @@ window.onload = async () => {
                 "id": id,
                 ...jsonData
             };
-            console.log(jsonData);
-            updateEmployee(jsonData);
+
+            const employeeUpdated = await updateEmployee(jsonData); //get updated data
+            displayUpdatedRow(employeeUpdated); //modified trow current employee
         })
 
         //remove form edit row and show employeeRow
@@ -182,23 +185,60 @@ window.onload = async () => {
         return data;
     }
 
+    //display employee row updated
+    function displayUpdatedRow(employee) {
+
+        const employeeRow = document.querySelector(`[data-row="${employee.id}"]`);
+        const dataEmployeeRow = employeeRow.childNodes;
+
+        dataEmployeeRow[1].textContent = employee.name;
+        dataEmployeeRow[2].textContent = employee.lastName;
+        dataEmployeeRow[3].textContent = employee.email;
+        dataEmployeeRow[4].textContent = employee.age;
+        dataEmployeeRow[5].textContent = employee.streetAddress;
+        dataEmployeeRow[6].textContent = employee.city;
+        dataEmployeeRow[7].textContent = employee.state;
+        dataEmployeeRow[8].textContent = employee.postalCode;
+        dataEmployeeRow[9].textContent = employee.phoneNumber;
+
+        //toggle row
+        toogleDisplay(employeeRow);
+
+        //delete row form input
+        const formRow = document.getElementById("formRow");
+        formRow.remove();
+
+    }
+
     //cancel inline update employee
     function cancelUpdateEmployee(employeeRow) {
         //remove row form
         const rowForm = document.getElementById("formRow");
         rowForm.remove();
         //show default current row
-        // const employeeRow = document.querySelector(`[data-row="${row}"]`);
         toogleDisplay(employeeRow);
     }
 
 
-    //fetch to delete employee
-    async function deleteEmployee(url, id) {
+    //open modal and assign id to hidden input
+    async function deleteEmployee(id) {
+        //get info to open modal
+        idInputModal.value = id;
+        const deleteModal = document.getElementById("deleteEmployee");
+        let ModalEdit = new bootstrap.Modal(deleteModal, {}).show();
 
-        const response = await fetch(url, {
+    }
+
+    deleteButtonModal.addEventListener("click", async () => {
+        await fetchDeleteEmployee(idInputModal.value);
+    });
+
+    //fetch to delete employee
+    async function fetchDeleteEmployee(id) {
+
+        const response = await fetch(urlController, {
             method: "DELETE",
-            body: id,
+            body: id
         });
 
         const data = await response.text();
