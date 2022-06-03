@@ -42,12 +42,6 @@ function getEmployee($id) //string $id as param
     }
     return null;
     // TODO implement it
-    //get employee info and return that info 
-
-    //get employees
-    // $employees = (file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'));
-
-    // echo $employees;
 }
 
 

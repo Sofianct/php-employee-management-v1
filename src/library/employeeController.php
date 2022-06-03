@@ -1,6 +1,6 @@
 <?php
 
-require ('./employeeManager.php');
+require('./employeeManager.php');
 
 //check session first of all
 
@@ -20,7 +20,10 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 $id = $_GET['id'];
                 echo json_encode(getEmployee($id));
                 break;
-            } else{
+            } elseif (isset($_GET['listId'])) {
+                $id = $_GET['listId'];
+                echo json_encode(getEmployee($id));
+            } else {
                 echo json_encode(getEmployees());
             }
         case 'DELETE':

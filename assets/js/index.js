@@ -3,6 +3,7 @@ const editButtons = document.querySelectorAll("[data-edit]");
 const deleteButtons = document.querySelectorAll("[data-delete]");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
+const urlControllerGetEmployee = "./library/employeeController.php?listId=";
 
 window.onload = async () => {
 
@@ -21,7 +22,7 @@ window.onload = async () => {
         const data = await res.json();
         //console.log(data);
         data.forEach(employee => {
-            const tbody = document.getElementById('tbody');
+            const tbody = document.querySelector('#tbody');
             const tr = document.createElement('tr');
             tr.dataset.row = employee.id;
             const imgtd = document.createElement('td');
@@ -52,7 +53,7 @@ window.onload = async () => {
             img.classList.add('rounded-circle');
             img.style.width = "45px";
             img.style.height = "45px";
-            imgtd.appendChild(img);
+            imgtd.append(img);
 
             name.textContent = employee.name + ' ' + employee.lastName;
             email.textContent = employee.email;
@@ -64,9 +65,7 @@ window.onload = async () => {
             phNumber.textContent = employee.phoneNumber;
 
             tr.append(imgtd, name, email, age, streetNo, city, state, posCode, phNumber, btns);
-            tbody.appendChild(tr);
-            console.log(tbody);
-            //add event listener to go to employee.php and show the selected employee.
+            tbody.append(tr);
 
 
         });
@@ -77,18 +76,11 @@ window.onload = async () => {
 
         Array.from(rowBtn).map(btn => {
             btn.addEventListener('click', (e) => {
-                let id = e.target.parentElement.getAttribute('data-row');
-                console.log(id);
-                showEmployee(id);
-                //window.location = "../src/employee.php";
+                const id = e.target.parentElement.getAttribute('data-row');
+                window.document.location = '../src/employee.php' + '?listId=' + id;
             });
         });
-        console.log(rowBtn);
     }
-
-
-
-
 
     //Add edit event listener to all edit buttons
     Array.from(editButtons).map(btn => {
@@ -170,48 +162,4 @@ window.onload = async () => {
 
     }
 
-    async function showEmployee(id) {
-        const response = await fetch(`${urlControllerGet}${id}`, {
-            method: 'GET',
-            headers: {
-                "content-type": "application/json",
-            }
-        });
-        const data = await response.json();
-        console.log(data);
-
-        const name = document.getElementById('name');
-        const lastName = document.getElementById('lastName');
-        const email = document.getElementById('email');
-        const genderSelect = document.getElementById('gender');
-        const city = document.getElementById('city');
-        const streetAddress = document.getElementById('streetAddress');
-        const state = document.getElementById('state');
-        const age = document.getElementById('age');
-        const postalCode = document.getElementById('postalCode');
-        const phoneNumber = document.getElementById('phoneNumber');
-
-        name.setAttribute('value', data.name);
-        lastName.setAttribute('value', data.lastName);
-        email.setAttribute('value', data.email);
-        city.setAttribute('value', data.city);
-        streetAddress.setAttribute('value', data.streetAddress);
-        state.setAttribute('value', data.state);
-        age.setAttribute('value', data.age);
-        postalCode.setAttribute('value', data.postalCode);
-        phoneNumber.setAttribute('value', data.phoneNumber);
-
-        if (data.gender == 'woman') {
-            genderSelect.selectedIndex = "0";
-        } else if (data.gender == 'man') {
-            genderSelect.selectedIndex = "1";
-        } else {
-            genderSelect.selectedIndex = "2";
-        }
-
-        window.addEventListener('load', function () {
-            alert("It's loaded!")
-        })
-
-    }
 }
