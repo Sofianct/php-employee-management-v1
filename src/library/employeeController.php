@@ -1,6 +1,6 @@
 <?php
 
-require ('./employeeManager.php');
+require('./employeeManager.php');
 
 //check session first of all
 
@@ -12,28 +12,36 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
     //switch statement
     switch ($requestType) {
+
         case 'POST':
 
             break;
+
         case 'GET':
+
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 echo json_encode(getEmployee($id));
                 break;
-            } else{
+            } else {
                 echo json_encode(getEmployees());
             }
+
         case 'DELETE':
+
             $id = trim(file_get_contents("php://input"));
             deleteEmployee($id);
             break;
+
         case 'PUT':
 
+            $newDataEmployee = json_decode(file_get_contents("php://input"), true);
+            echo updateEmployee($newDataEmployee);
             break;
+
         default:
             //request type that isn't being handled.
             break;
+
     }
 }
-
-// getEmployee();

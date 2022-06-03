@@ -28,6 +28,13 @@ function deleteEmployee(string $id)
 
 function updateEmployee(array $updateEmployee)
 {
+    $employees = getEmployees();
+    foreach ($employees as $key => $employee) {
+        if($employee["id"] == $updateEmployee["id"]){
+            
+        }
+    }
+
     // TODO implement it
 }
 

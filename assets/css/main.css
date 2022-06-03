@@ -1,17 +1,22 @@
-	@import url(./normalize.css);
+@import url(./normalize.css);
 
-	/* Custom style */
-	.navbar {
-		margin-bottom: 1rem;
-	}
+/* Custom style */
+.navbar {
+	margin-bottom: 1rem;
+}
 
-	button {
-		background: none;
-		color: inherit;
-		border: none !important;
-		padding: 0;
-		font: inherit;
-		cursor: pointer;
-		outline: inherit;
-		background-color: black;
-	}
+button {
+	background: none;
+	color: inherit;
+	border: none !important;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	background-color: black;
+}
+
+
+.hidden {
+	display: none;
+}

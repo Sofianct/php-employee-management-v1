@@ -24,6 +24,7 @@
         <tr>
           <th>Image</th>
           <th>Name</th>
+          <th>Last Name</th>
           <th>Email</th>
           <th>Age</th>
           <th>Street no</th>
