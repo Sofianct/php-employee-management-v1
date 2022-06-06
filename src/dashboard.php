@@ -10,6 +10,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
   <script src="../assets/js/index.js" defer></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="../assets/css/main.css">
   <title>Employee Management</title>
 </head>
@@ -46,14 +55,38 @@
       <div class="modal-dialog modal-confirm modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header flex-column">
-          <h5 class="modal-title" id="exampleModalLongTitle">Delete Employee</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Delete Employee</h5>
           </div>
           <div class="modal-body">
             <p>Are you sure to remove this employee? This process cannot be undone.</p>
-            <input type="hidden" id="idEmployee" value="">
+            <!-- <input type="hidden" id="idEmployee" value=""> -->
           </div>
           <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+            <!-- <button id="deleteBtnModal" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal Try -->
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header flex-column">
+            <div class="icon-box">
+              <i class="material-icons">&#xE5CD;</i>
+            </div>
+            <h4 class="modal-title w-100">Are you sure?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Do you really want to delete these employee? This process cannot be undone.</p>
+            <input type="hidden" id="idEmployee" value="">
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button id="deleteBtnModal" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
           </div>
         </div>

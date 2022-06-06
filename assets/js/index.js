@@ -224,13 +224,15 @@ window.onload = async () => {
     async function deleteEmployee(id) {
         //get info to open modal
         idInputModal.value = id;
-        const deleteModal = document.getElementById("deleteEmployee");
+        const deleteModal = document.getElementById("myModal");
         let ModalEdit = new bootstrap.Modal(deleteModal, {}).show();
-
     }
 
     deleteButtonModal.addEventListener("click", async () => {
-        await fetchDeleteEmployee(idInputModal.value);
+        const id = await fetchDeleteEmployee(idInputModal.value);
+        const rowEmployee = document.querySelector(`[data-row="${id}"]`);
+        //remove employee row
+        rowEmployee.remove(); 
     });
 
     //fetch to delete employee
@@ -243,6 +245,7 @@ window.onload = async () => {
 
         const data = await response.text();
         console.log(data);
+        return id;
     }
 
     //toggle hidden class

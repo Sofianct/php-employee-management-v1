@@ -14,7 +14,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
     switch ($requestType) {
 
         case 'POST':
-
+            
             break;
 
         case 'GET':
@@ -31,7 +31,6 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
             $id = trim(file_get_contents("php://input"));
             deleteEmployee($id);
             break;
-
         case 'PUT':
             $newDataEmployee = json_decode(file_get_contents("php://input"), true);
             echo json_encode(updateEmployee($newDataEmployee));

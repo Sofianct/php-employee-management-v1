@@ -27,9 +27,9 @@ function deleteEmployee($id)
     foreach ($employees as $key => $employee) {
         if ($employee["id"] == $id) {
             array_splice($employees, $key, 1);
+            saveDate($employees);
         }
     }
-    saveDate($employees);
 }
 
 
