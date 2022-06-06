@@ -16,6 +16,13 @@ button {
 	background-color: black;
 }
 
+.newEmployee__button {
+	background-color: #f8f9fa;
+}
+
+.newEmployee__button>i:hover, .btn>i:hover{
+	color: #636363;
+}
 
 .hidden {
 	display: none;

@@ -29,11 +29,8 @@ function authUser()
 function destroySession()
 {
     if (session_status() === PHP_SESSION_NONE) session_start();
-
     unset($_SESSION);
-
     destroySessionCookies();
-
     session_destroy();
 }
 

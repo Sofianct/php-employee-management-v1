@@ -1,3 +1,10 @@
+<?php
+
+require_once('./library/sessionHelper.php');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +49,7 @@
           <th>State</th>
           <th>Postal Code</th>
           <th>Phone Number</th>
-          <th><a href="#" class="link-dark "><i class="fa-solid fa-plus"></i></a></th>
+          <th><button class="newEmployee__button" id="newEmployee"><i class="fa-solid fa-plus"></i></button></th>
         </tr>
       </thead>
       <tbody id="tbody">

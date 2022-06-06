@@ -7,16 +7,30 @@
  * @date: 11/06/2020
  */
 
+if (session_status() == PHP_SESSION_NONE) session_start();
+
+$errors = [
+    'name' => "",
+    'lastName' => "",
+    'email' => "",
+    'age' => "",
+    'postalCode' => "",
+    'phoneNumber' => "",
+    'unique' => ""
+];
+
 function getEmployees()
 {
-    //get employees
     $employees = json_decode(file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'), true);
     return $employees;
 }
 
 function addEmployee(array $newEmployee)
 {
-    // TODO implement it
+    $employees = getEmployees();
+    array_push($employees, $newEmployee);
+    saveDate($employees);
+    return $newEmployee;
 }
 
 
@@ -35,7 +49,6 @@ function deleteEmployee($id)
 
 function updateEmployee(array $updateEmployee)
 {
-    // header('Content-type: text/javascript');
     $employees = getEmployees();
     foreach ($employees as $key => $employee) {
         if ($employee["id"] == $updateEmployee["id"]) {
@@ -78,8 +91,52 @@ function getQueryStringParameters() //: array
     // TODO implement it
 }
 
-function getNextIdentifier(array $employeesCollection) //: int
+function getNextIdentifier(array $employeesCollection)
 {
-    return 1;
-    // TODO implement it
+    $lastEmployeeId = end($employeesCollection)["id"];
+    $nextId = intval($lastEmployeeId) + 1;
+    return $nextId;
+}
+
+
+function validateEmployee($employee, &$errors)
+{
+    $isValid = true;
+
+    // Start of validation
+    if (!$employee['name']) {
+        $isValid = false;
+        $errors['name'] = 'Name is mandatory';
+    }
+    if (!$employee['lastName']) {
+        echo !$employee['lastName'];
+        $isValid = false;
+        $errors['lastName'] = 'Name is mandatory';
+    }
+    if ($employee['email'] && !filter_var($employee['email'], FILTER_VALIDATE_EMAIL)) {
+        $isValid = false;
+        $errors['email'] = 'This must be a valid email address';
+    }
+    if (intval($employee['age']) < 18) {
+        $isValid = false;
+        $errors['age'] = 'The employee must not be underage';
+    }
+    if (!preg_match(('/^[0-9]{5}$/i'), $employee['postalCode'])) {
+        $isValid = false;
+        $errors['postalCode'] = 'This must be a valid postal code';
+    }
+    if (!filter_var($employee['phoneNumber'], FILTER_VALIDATE_INT)) {
+        $isValid = false;
+        $errors['phoneNumber'] = 'This must be a valid phone number';
+    }
+    //validate unique email
+    $employees = getEmployees();
+    foreach ($employees as $user) {
+        if ($user["email"] == $employee["email"]) {
+            $isValid = false;
+            $errors['unique'] = 'This employee already exists in the database';
+        }
+    }
+    // End Of validation
+    return $isValid;
 }

@@ -1,15 +1,42 @@
 //Variables URL PHP Controller
 const deleteButtonModal = document.getElementById("deleteBtnModal");
 const idInputModal = document.getElementById("idEmployee");
+const newEmployeeButton = document.getElementById("newEmployee");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
+const urlSessionHelper = "./library/sessionHelper.php";
 
 window.onload = async () => {
 
     await getEmployees(); //print employees
 
+    initializeCreateButton();
     initializeUpdateButtons();
     initializeDeleteButtons();
+
+    //check session activity every 10 seconds
+    const checkSession =  async () => {
+        const response = await fetch(urlSessionHelper, {
+            method: 'POST'
+        });
+
+        const data = await response.text(); 
+        
+        if (data == 1) {
+            window.location.href="../index.php?sessionExpired";
+        }
+    }
+
+    setInterval(() => {
+        checkSession();
+    }, 10000) //every ten seconds
+
+    //initialize create button
+    function initializeCreateButton() {
+        newEmployeeButton.addEventListener("click", () => {
+            createNewRowEmployee();
+        });
+    }
 
     //initialize update buttons to all rows table
     function initializeUpdateButtons() {
@@ -100,6 +127,108 @@ window.onload = async () => {
         });
     }
 
+    //create new form row employee
+    function createNewRowEmployee() {
+        newEmployeeButton.disabled = true; //avoid add new row
+
+        const firstRow = document.querySelector("tbody tr:first-child");
+        const tr = document.createElement("tr");
+        tr.id = "newEmployeeRow";
+        //for each td insert input form
+        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td></td>
+            <td><input form="newFormRow" type="text" name="name" class="form-control"></td>
+            <td><input form="newFormRow" type="text" name="lastName" class="form-control"></td>
+            <td><input form="newFormRow" type="email" name="email" class="form-control"></td>
+            <td><input form="newFormRow" type="number" name="age" class="form-control"></td>
+            <td><input form="newFormRow" type="text" name="streetAddress" class="form-control"></td>
+            <td><input form="newFormRow" type="text" name="city" class="form-control"></td>
+            <td><input form="newFormRow" type="text" name="state" class="form-control">
+            <td><input form="newFormRow" type="text" name="postalCode" class="form-control">
+            </td><td><input form="newFormRow" type="tel" name="phoneNumber" class="form-control"></td>
+            <td><div class="d-flex justify-content-center">
+            <button id="btnCreate" type="submit" form="newFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
+            <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
+            </div></td></form>`;
+
+        firstRow.insertAdjacentElement("beforebegin", tr);
+
+        //submit form for editting employee
+        const formEditEmployee = document.getElementById("newFormRow");
+        formEditEmployee.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            //convert form data to json
+            let jsonData = Object.fromEntries(formData.entries());
+            const createdEmployee = await createEmployee(jsonData); //get updated data
+            console.log(createdEmployee);
+            //re-print table
+            displayNewEmployee(createdEmployee);
+            newEmployeeButton.disabled = false;
+        })
+
+        //remove form edit row and show employeeRow
+        const cancelEditButton = document.getElementById("btnCancel");
+        cancelEditButton.addEventListener("click", () => {
+            cancelCreateEmployee();
+            newEmployeeButton.disabled = false;
+        });
+
+    }
+
+    //fetch to create employee
+    async function createEmployee(formData) {
+        const response = await fetch(urlController, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (data.id) {
+            return data;
+        } else {
+            //handle errors validation
+        }
+    }
+
+    function displayNewEmployee(newEmployee) {
+
+        cancelCreateEmployee(); //remove add new employee form
+
+        const newRowEmployee = document.createElement("tr");
+        newRowEmployee.dataset.row = newEmployee.id;
+
+        const firstRow = document.querySelector("tbody tr:first-child");
+
+        newRowEmployee.innerHTML = `<td><img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+        <td>${newEmployee.name}</td>
+        <td>${newEmployee.lastName}</td>
+        <td>${newEmployee.email}</td>
+        <td>${newEmployee.age}</td>
+        <td>${newEmployee.streetAddress}</td>
+        <td>${newEmployee.city}</td>
+        <td>${newEmployee.state}</td>
+        <td>${newEmployee.postalCode}</td>
+        <td>${newEmployee.phoneNumber}</td>
+        <td><button data-edit="" data-id="${newEmployee.id}" class="btn btn-link"><i class="fa-solid fa-pen-to-square link-dark p-2"></i></button><button data-delete="" data-id="${newEmployee.id}" class="btn btn-link"><i class="fa-solid fa-trash-can link-dark"></i></button></td>`;
+
+        firstRow.insertAdjacentElement("beforebegin", newRowEmployee);
+
+        initializeUpdateButtons();
+        initializeDeleteButtons();
+    }
+
+    //cancel inline create employee
+    function cancelCreateEmployee() {
+        //remove new employee row
+        const rowForm = document.getElementById("newEmployeeRow");
+        rowForm.remove();
+    }
+
     //get data employee
     async function getEmployee(id) {
 
@@ -125,19 +254,19 @@ window.onload = async () => {
 
         //for each td insert input form
         editRow.innerHTML = `<form action="" method="post" id="editFormRow"><td></td>
-        <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control" required></td>
-        <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control" required></td>
-        <td><input value = "${employee.email}" form="editFormRow" type="text" name="email" class="form-control" required></td>
-        <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control" required></td>
-        <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control" required></td>
-        <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control" required></td>
-        <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control" required>
-        <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control" required>
-        </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="text" name="phoneNumber" class="form-control" required></td>
-        <td><div class="d-flex justify-content-center">
-        <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
-        <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
-        </div></td></form>`;
+            <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control" required></td>
+            <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control" required></td>
+            <td><input value = "${employee.email}" form="editFormRow" type="email" name="email" class="form-control" required></td>
+            <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control" required></td>
+            <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control" required></td>
+            <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control" required></td>
+            <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control" required>
+            <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control" required>
+            </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="tel" name="phoneNumber" class="form-control" required></td>
+            <td><div class="d-flex justify-content-center">
+            <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
+            <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
+            </div></td></form>`;
 
         employeeRow.parentElement.insertAdjacentElement("afterbegin", editRow);
         toogleDisplay(employeeRow);
@@ -162,7 +291,6 @@ window.onload = async () => {
 
         //remove form edit row and show employeeRow
         const cancelEditButton = document.getElementById("btnCancel");
-        // https://stackoverflow.com/questions/51120813/addeventlistener-not-working-more-than-once-with-a-button
         cancelEditButton.addEventListener("click", () => {
             cancelUpdateEmployee(employeeRow);
         });
@@ -228,11 +356,12 @@ window.onload = async () => {
         let ModalEdit = new bootstrap.Modal(deleteModal, {}).show();
     }
 
+    //delete employee from modal button
     deleteButtonModal.addEventListener("click", async () => {
         const id = await fetchDeleteEmployee(idInputModal.value);
         const rowEmployee = document.querySelector(`[data-row="${id}"]`);
         //remove employee row
-        rowEmployee.remove(); 
+        rowEmployee.remove();
     });
 
     //fetch to delete employee

@@ -1,1 +1,4 @@
-<!-- TODO Employee view -->
+<?php
+
+require_once('./library/sessionHelper.php');
+
