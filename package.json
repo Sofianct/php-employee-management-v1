@@ -4,7 +4,8 @@
   "description": "Part of basic web application project for Assembler School students",
   "main": "index.php",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "json-server --watch ./resources/db.json"
   },
   "author": "Jose Manuel Orts",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "bootstrap-icons": "^1.0.0-alpha4",
     "jquery": "^3.5.1",
     "jsgrid": "^1.5.3",
+    "json-server": "^0.17.0",
     "toastr": "^2.1.4"
   }
 }

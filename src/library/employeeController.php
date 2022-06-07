@@ -21,6 +21,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
             $employee = [
                 'id' => $newId,
+                'image' => "../assets/images/default.jpg",
                 'name' => "",
                 'lastName' => "",
                 'email' => "",

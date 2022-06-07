@@ -124,7 +124,7 @@ window.onload = async () => {
             deleteBtn.appendChild(deleteIcon);
             btns.append(editBtn, deleteBtn);
 
-            img.setAttribute('src', 'https://mdbootstrap.com/img/new/avatars/8.jpg');
+            img.setAttribute('src', employee.image);
             img.classList.add('rounded-circle');
             img.style.width = "45px";
             img.style.height = "45px";
@@ -153,7 +153,7 @@ window.onload = async () => {
         const tr = document.createElement("tr");
         tr.id = "newEmployeeRow";
         //for each td insert input form
-        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td></td>
+        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td><img src="../assets/images/default.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
             <td><input form="newFormRow" type="text" name="name" class="form-control"></td>
             <td><input form="newFormRow" type="text" name="lastName" class="form-control"></td>
             <td><input form="newFormRow" type="email" name="email" class="form-control"></td>
@@ -241,7 +241,7 @@ window.onload = async () => {
 
         const firstRow = document.querySelector("tbody tr:first-child");
 
-        newRowEmployee.innerHTML = `<td><img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+        newRowEmployee.innerHTML = `<td><img src="${newEmployee.image}" class="rounded-circle" style="width: 45px; height: 45px;"></td>
         <td>${newEmployee.name}</td>
         <td>${newEmployee.lastName}</td>
         <td>${newEmployee.email}</td>
