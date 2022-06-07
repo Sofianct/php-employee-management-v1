@@ -1,19 +1,19 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "name": "Rack",
         "lastName": "Lei",
         "email": "jackon@network.com",
-        "gender": "man",
+        "gender": "male",
         "city": "San Jone",
         "streetAddress": "126",
         "state": "CA",
-        "age": 24,
+        "age": "24",
         "postalCode": "394221",
         "phoneNumber": "7383627627"
     },
     {
-        "id": 2,
+        "id": "2",
         "name": "John",
         "lastName": "Doe",
         "email": "jhondoe@foo.com",
@@ -21,7 +21,7 @@
         "city": "New York",
         "streetAddress": "89",
         "state": "WA",
-        "age": 34,
+        "age": "34",
         "postalCode": "09889",
         "phoneNumber": "1283645645"
     },

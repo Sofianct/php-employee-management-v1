@@ -7,6 +7,24 @@ const urlControllerGet = "./library/employeeController.php?id=";
 const urlSessionHelper = "./library/sessionHelper.php";
 const formUpdateEmployee = document.getElementById('updateEmployee');
 
+// Toastr Options Library
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": true,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "3000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
 window.onload = async () => {
 
     await getEmployees(); //print employees
@@ -165,7 +183,7 @@ window.onload = async () => {
 
         firstRow.insertAdjacentElement("beforebegin", tr);
 
-        //submit form for editting employee
+        //submit form for create employee
         const formEditEmployee = document.getElementById("newFormRow");
         formEditEmployee.addEventListener("submit", async (e) => {
 
@@ -174,10 +192,11 @@ window.onload = async () => {
             //convert form data to json
             let jsonData = Object.fromEntries(formData.entries());
             const createdEmployee = await createEmployee(jsonData); //get updated data
-            console.log(createdEmployee);
             //re-print table
-            displayNewEmployee(createdEmployee);
-            newEmployeeButton.disabled = false;
+            if (createdEmployee) {
+                displayNewEmployee(createdEmployee);
+                newEmployeeButton.disabled = false;
+            }
         })
 
         //remove form edit row and show employeeRow
@@ -198,13 +217,31 @@ window.onload = async () => {
             },
             body: JSON.stringify(formData),
         });
-
+        if (!response.ok) {
+            toastr.error('There was an error in the request. Please refresh the borwser and try again.')
+            return null;
+        }
         const data = await response.json();
         console.log(data);
         if (data.id) {
+            toastr.success('Employee successfully created!')
             return data;
         } else {
-            //handle errors validation
+            const errors = Object.values(data);
+            let message = "";
+            errors.map((error) => {
+                if (error !== "") {
+                    message += (error + "</br>");
+                }
+            });
+            //give error style after invalid inputs
+            const formEditEmployee = document.getElementById("newEmployeeRow");
+            const dataFormInput = formEditEmployee.querySelectorAll("td>input");
+            formEditEmployee.classList.add("errorValidation__tr");
+            Array.from(dataFormInput).map((td) => {
+                td.classList.add("errorValidation__td");
+            });
+            toastr.warning(`${message}`);
         }
     }
 
@@ -253,7 +290,8 @@ window.onload = async () => {
             }
         });
         if (!response.ok) {
-
+            toastr.error('There was an error in the request. Please refresh the borwser and try again.')
+            return null;
         }
         const data = await response.json();
         console.log(data);
@@ -324,9 +362,13 @@ window.onload = async () => {
             },
             body: JSON.stringify(formData),
         });
-
+        if (!response.ok) {
+            toastr.error('There was an error in the request. Please refresh the borwser and try again.')
+            return null;
+        }
         const data = await response.json();
         console.log(data);
+        toastr.success('Employee succesfully updated!')
         return data;
     }
 
@@ -364,7 +406,6 @@ window.onload = async () => {
         toogleDisplay(employeeRow);
     }
 
-
     //open modal and assign id to hidden input
     async function deleteEmployee(id) {
         //get info to open modal
@@ -374,10 +415,11 @@ window.onload = async () => {
     }
 
     //delete employee from modal button
-    deleteButtonModal.addEventListener("click", async () => {
-        const id = await fetchDeleteEmployee(idInputModal.value);
-        const rowEmployee = document.querySelector(`[data-row="${id}"]`);
+    deleteButtonModal.addEventListener("click", async (e) => {
+        await fetchDeleteEmployee(idInputModal.value);
+        const rowEmployee = document.querySelector(`[data-row="${idInputModal.value}"]`);
         //remove employee row
+        console.log(rowEmployee);
         rowEmployee.remove();
     });
 
@@ -388,9 +430,12 @@ window.onload = async () => {
             method: "DELETE",
             body: id
         });
-
+        if (!response.ok) {
+            toastr.error('There was an error in the request. Please refresh the borwser and try again.')
+        }
         const data = await response.text();
         console.log(data);
+        toastr.success('Employee succesfully deleted!')
         return id;
     }
 

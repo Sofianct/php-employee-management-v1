@@ -9,8 +9,8 @@ if (!isset($_SESSION['userId'])) {
     header('Location: ../index.php');
 }
 
-if (isset($_SESSION["userId"])) {
-    $timeExpire = 28800; // 10' x 60'' 
+if (isset($_SESSION["userId"])){
+    $timeExpire = 6000; // 10' x 60'' 
     if ((time() - $_SESSION["lastloginTime"]) >= $timeExpire) {
         destroySession();
         echo '1';
