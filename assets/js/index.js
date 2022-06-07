@@ -31,6 +31,7 @@ window.onload = async () => {
     initializeCreateButton();
     initializeUpdateButtons();
     initializeDeleteButtons();
+    initializeRowsListener();
 
     //check session activity every 10 seconds
     const checkSession = async () => {
@@ -77,6 +78,18 @@ window.onload = async () => {
             btn.addEventListener('click', (e) => {
                 const employeeId = e.target.parentElement.getAttribute('data-id');
                 deleteEmployee(employeeId);
+            });
+        });
+    }
+
+    //initialize add event listener table rows
+    function initializeRowsListener() {
+        const rowBtn = document.querySelectorAll('[data-row]');
+
+        Array.from(rowBtn).map(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.target.parentElement.getAttribute('data-row');
+                window.document.location = '../src/employee.php' + '?listId=' + id;
             });
         });
     }
