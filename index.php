@@ -1,3 +1,13 @@
+<?php 
+
+if (isset($_GET['sessionExpired'])){
+    $sessionExpired = true;
+}else{
+    $sessionExpired = false;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +50,7 @@
 
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-
+                        <?= ($sessionExpired) ? "<div class='mt-3 alert alert-warning role='alert'>Session expired</div>" : "" ?>
                         <div id="loginError" class="mt-3 alert alert-danger fade" vertical-center>
                             <span class="align-middle msg-login">Login Error</span>
                         </div>

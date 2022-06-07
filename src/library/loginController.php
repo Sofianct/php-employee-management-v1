@@ -1,7 +1,6 @@
 <?php
 require('./loginManager.php');
 
-
 //Login
 if (isset($_POST['email'])) {
     echo authUser();
@@ -12,3 +11,4 @@ if (isset($_GET['logout'])) {
     destroySession();
     header('Location: ../../index.php');
 }
+
