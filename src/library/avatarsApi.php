@@ -21,6 +21,7 @@ function curlQuery($url, $headers)
         curl_close($ch);
         return json_decode($response, true);
     }
+    
 }
 
 //get profile images url

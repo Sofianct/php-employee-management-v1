@@ -19,6 +19,7 @@ async function showEmployee(id) {
     console.log(data);
 
     const image = document.getElementById('image');
+    const photo = document.getElementById('photo'); //input iamge field hidden
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -31,6 +32,7 @@ async function showEmployee(id) {
     const phoneNumber = document.getElementById('phoneNumber');
 
     image.src = data.image;
+    photo.setAttribute('value', data.image);
     name.setAttribute('value', data.name);
     lastName.setAttribute('value', data.lastName);
     email.setAttribute('value', data.email);

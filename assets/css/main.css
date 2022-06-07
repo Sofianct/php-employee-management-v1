@@ -140,7 +140,21 @@ button {
 	background-color: #f2acac;
 }
 
-.form__image{
+.form__image {
 	width: 200px;
 	height: 200px;
+}
+
+.imageGallery__div{
+	display: grid; 
+	grid-template-columns: repeat(5, 1fr); 
+	grid-template-rows: repeat(2, 1fr); 
+	gap: 10px 10px; 
+	width: 100%;
+}
+
+.gallery__img{
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
 }
