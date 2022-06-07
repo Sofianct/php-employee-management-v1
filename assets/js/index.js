@@ -402,10 +402,11 @@ window.onload = async () => {
     }
 
     //delete employee from modal button
-    deleteButtonModal.addEventListener("click", async () => {
-        const id = await fetchDeleteEmployee(idInputModal.value);
-        const rowEmployee = document.querySelector(`[data-row="${id}"]`);
+    deleteButtonModal.addEventListener("click", async (e) => {
+        await fetchDeleteEmployee(idInputModal.value);
+        const rowEmployee = document.querySelector(`[data-row="${idInputModal.value}"]`);
         //remove employee row
+        console.log(rowEmployee);
         rowEmployee.remove();
     });
 
