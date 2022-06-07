@@ -10,7 +10,7 @@ if (!isset($_SESSION['userId'])) {
   }
 
 if (isset($_SESSION["userId"])){
-    $timeExpire = 600; // 10' x 60'' 
+    $timeExpire = 6000; // 10' x 60'' 
     if ((time() - $_SESSION["lastloginTime"]) >= $timeExpire) {
         destroySession();
         echo '1';

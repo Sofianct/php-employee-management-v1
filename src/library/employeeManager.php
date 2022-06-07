@@ -109,17 +109,22 @@ function validateEmployee($employee, &$errors)
         $errors['name'] = 'Name is mandatory';
     }
     if (!$employee['lastName']) {
-        echo !$employee['lastName'];
         $isValid = false;
         $errors['lastName'] = 'Name is mandatory';
     }
     if ($employee['email'] && !filter_var($employee['email'], FILTER_VALIDATE_EMAIL)) {
         $isValid = false;
         $errors['email'] = 'This must be a valid email address';
+    } elseif (!$employee['email']) {
+        $isValid = false;
+        $errors['email'] = 'Email is mandatory';
     }
-    if (intval($employee['age']) < 18) {
+    if ($employee['age'] && intval($employee['age']) < 18) {
         $isValid = false;
         $errors['age'] = 'The employee must not be underage';
+    } elseif (!$employee['age']) {
+        $isValid = false;
+        $errors['age'] = 'Age is mandatory';
     }
     if (!preg_match(('/^[0-9]{5}$/i'), $employee['postalCode'])) {
         $isValid = false;
