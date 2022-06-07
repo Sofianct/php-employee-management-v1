@@ -20,7 +20,8 @@ button {
 	background-color: #f8f9fa;
 }
 
-.newEmployee__button>i:hover, .btn>i:hover{
+.newEmployee__button>i:hover,
+.btn>i:hover {
 	color: #636363;
 }
 
@@ -129,4 +130,12 @@ button {
 .trigger-btn {
 	display: inline-block;
 	margin: 100px auto;
+}
+
+.errorValidation__tr {
+	background-color: rgb(204, 248, 204);
+}
+
+.errorValidation__td {
+	background-color: #f2acac;
 }

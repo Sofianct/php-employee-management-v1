@@ -170,7 +170,7 @@ window.onload = async () => {
 
         firstRow.insertAdjacentElement("beforebegin", tr);
 
-        //submit form for editting employee
+        //submit form for create employee
         const formEditEmployee = document.getElementById("newFormRow");
         formEditEmployee.addEventListener("submit", async (e) => {
 
@@ -218,9 +218,16 @@ window.onload = async () => {
             let message = "";
             errors.map((error) => {
                 if (error !== "") {
-                    message += error + "\n";
+                    message += (error + "</br>");
                 }
-            }); 
+            });
+            //give error style after invalid inputs
+            const formEditEmployee = document.getElementById("newEmployeeRow");
+            const dataFormInput = formEditEmployee.querySelectorAll("td>input");
+            formEditEmployee.classList.add("errorValidation__tr");
+            Array.from(dataFormInput).map((td) => {
+                td.classList.add("errorValidation__td");
+            });
             toastr.warning(`${message}`);
         }
     }
