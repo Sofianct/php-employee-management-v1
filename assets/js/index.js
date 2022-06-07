@@ -218,6 +218,7 @@ window.onload = async () => {
 
         firstRow.insertAdjacentElement("beforebegin", newRowEmployee);
 
+        //initialize delete and edit buttons for all the table
         initializeUpdateButtons();
         initializeDeleteButtons();
     }
@@ -238,6 +239,9 @@ window.onload = async () => {
                 "content-type": "application/json",
             }
         });
+        if (!response.ok) {
+            
+        }
         const data = await response.json();
         console.log(data);
         return data;
