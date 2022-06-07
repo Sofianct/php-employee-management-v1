@@ -25,7 +25,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 'lastName' => "",
                 'email' => "",
                 'gender' => "",
-                'age' => 24,
+                'age' => "",
                 'streetAddress' => "",
                 'city' => "",
                 'state' => "",
