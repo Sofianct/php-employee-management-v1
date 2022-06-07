@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const id = document.location.search.replace(/^.*?\=/, "");
-    showEmployee(id);
+    await showEmployee(id);
 });
 
 const dashboard = document.getElementById('dashboard');
