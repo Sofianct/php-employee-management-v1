@@ -1,12 +1,28 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const id = document.location.search.replace(/^.*?\=/, "");
     await showEmployee(id);
+    updateEmployee();
 });
 
 const dashboard = document.getElementById('dashboard');
 dashboard.addEventListener('click', () => {
     window.location.href = "./dashboard.php";
 });
+
+function updateEmployee() {
+    const url = "../../src/library/employeeController.php";
+    const form = document.getElementById('updateEmployee');
+    // const response = await fetch(url, {
+    //     method: 'PUT',
+    //     body: new FormData()
+    // });
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        let jsonData = Object.fromEntries(formData.entries());
+        console.log(jsonData);
+    });
+}
 
 async function showEmployee(id) {
     const response = await fetch(`./library/employeeController.php?listId=${id}`, {

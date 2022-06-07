@@ -5,6 +5,7 @@ const newEmployeeButton = document.getElementById("newEmployee");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
 const urlSessionHelper = "./library/sessionHelper.php";
+const formUpdateEmployee = document.getElementById('updateEmployee');
 
 window.onload = async () => {
 
@@ -66,7 +67,7 @@ window.onload = async () => {
 
     function initializeRow() {
         const tableRow = document.querySelectorAll('[data-row]');
-
+        //Add event listener to get the employee id and display it in employee.php
         Array.from(tableRow).map(btn => {
             btn.addEventListener('click', (e) => {
                 const id = e.target.parentElement.getAttribute('data-row');
@@ -84,7 +85,7 @@ window.onload = async () => {
             }
         });
         const data = await res.json();
-        console.log(data);
+        //console.log(data);
         data.forEach(employee => {
             const tbody = document.getElementById('tbody');
             const tr = document.createElement('tr');
