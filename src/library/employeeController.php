@@ -2,7 +2,6 @@
 
 require('./employeeManager.php');
 require_once('./sessionHelper.php');
-//check session first of all
 
 if (session_status() == PHP_SESSION_NONE) session_start();
 
@@ -54,6 +53,9 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 $id = $_GET['id'];
                 echo json_encode(getEmployee($id));
                 break;
+            } elseif (isset($_GET['listId'])) {
+                $id = $_GET['listId'];
+                echo json_encode(getEmployee($id));
             } else {
                 echo json_encode(getEmployees());
             }
