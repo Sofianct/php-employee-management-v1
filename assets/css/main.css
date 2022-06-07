@@ -139,3 +139,8 @@ button {
 .errorValidation__td {
 	background-color: #f2acac;
 }
+
+.form__image{
+	width: 200px;
+	height: 200px;
+}

@@ -18,6 +18,7 @@ async function showEmployee(id) {
     const data = await response.json();
     console.log(data);
 
+    const image = document.getElementById('image');
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -29,6 +30,7 @@ async function showEmployee(id) {
     const postalCode = document.getElementById('postalCode');
     const phoneNumber = document.getElementById('phoneNumber');
 
+    image.src = data.image;
     name.setAttribute('value', data.name);
     lastName.setAttribute('value', data.lastName);
     email.setAttribute('value', data.email);

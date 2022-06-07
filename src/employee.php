@@ -31,6 +31,18 @@ require_once('./library/sessionHelper.php');
             <div class="row m-4">
                 <div class="col">
                     <div class="form-outline">
+                        <!-- <label class="form-label" for="form3Example1">Profile Picture</label> -->
+                        <img id="image" class="form-control form__image" src="../assets/images/default.jpg"/>
+                    </div>
+                </div>
+                <?php 
+                require_once('./imageGallery.php');
+                ?>
+            </div>
+            <button type="button" id="displayGallery" class="btn btn-dark ms-5">Select Profile Image</button>
+            <div class="row m-4">
+                <div class="col">
+                    <div class="form-outline">
                         <label class="form-label" for="form3Example1">Name</label>
                         <input type="text" id="name" class="form-control" />
                     </div>
