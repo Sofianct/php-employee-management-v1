@@ -10,17 +10,26 @@ dashboard.addEventListener('click', () => {
 });
 
 function updateEmployee() {
-    const url = "../../src/library/employeeController.php";
+    const url = `./library/employeeController.php`; //url should be the same as the selected employee
     const form = document.getElementById('updateEmployee');
-    // const response = await fetch(url, {
-    //     method: 'PUT',
-    //     body: new FormData()
-    // });
-    form.addEventListener('submit', (e) => {
+
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+
         let jsonData = Object.fromEntries(formData.entries());
-        console.log(jsonData);
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+        });
+
+        let result = await response.text();
+
+        console.log(result);
     });
 }
 
@@ -34,6 +43,7 @@ async function showEmployee(id) {
     const data = await response.json();
     console.log(data);
 
+    const employeeId = document.getElementById('employeeId');
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -45,6 +55,7 @@ async function showEmployee(id) {
     const postalCode = document.getElementById('postalCode');
     const phoneNumber = document.getElementById('phoneNumber');
 
+    employeeId.setAttribute('value', data.id);
     name.setAttribute('value', data.name);
     lastName.setAttribute('value', data.lastName);
     email.setAttribute('value', data.email);

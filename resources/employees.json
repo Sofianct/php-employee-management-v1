@@ -39,17 +39,17 @@
         "phoneNumber": "9983632461"
     },
     {
-        "id": 4,
+        "id": "4",
         "name": "Richard",
         "lastName": "Desmond",
         "email": "dismond@foo.com",
-        "gender": "man",
-        "age": 30,
+        "gender": "male",
+        "age": "30",
         "streetAddress": "90",
         "city": "Salt lake city",
         "state": "UT",
         "postalCode": "457320",
-        "phoneNumber": "90876987654"
+        "phoneNumber": "55236595"
     },
     {
         "id": 5,

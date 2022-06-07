@@ -31,14 +31,15 @@ require_once('./library/sessionHelper.php');
             <div class="row m-4">
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" for="form3Example1">Name</label>
-                        <input type="text" id="name" form="updateEmployee" class="form-control" />
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" id="name" name="name" form="updateEmployee" class="form-control" />
+                        <input type="hidden" name="id" id="employeeId">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" for="form3Example2">Last name</label>
-                        <input type="text" id="lastName" form="updateEmployee" class="form-control" />
+                        <label class="form-label" for="lastName">Last name</label>
+                        <input type="text" id="lastName" name="lastName" form="updateEmployee" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -47,14 +48,14 @@ require_once('./library/sessionHelper.php');
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">Email Address</label>
-                        <input type="text" id="email" form="updateEmployee" class="form-control" />
+                        <input type="text" id="email" form="updateEmployee" name="email" class="form-control" />
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Gender</label>
-                        <select id="gender" form="updateEmployee" class="form-select" aria-label="Default select example">
+                        <select id="gender" form="updateEmployee" name="gender" class="form-select" aria-label="Default select example">
                             <option value="female">Female</option>
                             <option value="male">Male</option>
                             <option value="notAnswered">Prefer not to respond</option>
@@ -67,13 +68,13 @@ require_once('./library/sessionHelper.php');
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">City</label>
-                        <input type="text" id="city" form="updateEmployee" class="form-control" />
+                        <input type="text" id="city" form="updateEmployee" name="city" class="form-control" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Street Address</label>
-                        <input type="text" id="streetAddress" form="updateEmployee" class="form-control" />
+                        <input type="text" id="streetAddress" form="updateEmployee" name="streetAddress" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -82,13 +83,13 @@ require_once('./library/sessionHelper.php');
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">State</label>
-                        <input type="text" id="state" form="updateEmployee" class="form-control" />
+                        <input type="text" id="state" form="updateEmployee" name="state" class="form-control" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Age</label>
-                        <input type="text" id="age" form="updateEmployee" class="form-control" />
+                        <input type="text" id="age" form="updateEmployee" name="age" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -97,13 +98,13 @@ require_once('./library/sessionHelper.php');
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">Postal Code</label>
-                        <input type="text" id="postalCode" form="updateEmployee" class="form-control" />
+                        <input type="text" id="postalCode" form="updateEmployee" name="postalCode" class="form-control" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Phone Number</label>
-                        <input type="text" id="phoneNumber" form="updateEmployee" class="form-control" />
+                        <input type="text" id="phoneNumber" form="updateEmployee" name="phoneNumber" class="form-control" />
                     </div>
                 </div>
             </div>

@@ -17,8 +17,8 @@ require_once('./library/sessionHelper.php');
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Bootstrap -->
   <!-- Toast Library -->
-  <link href="toastr.css" rel="stylesheet"/>
-  <script src="toastr.js"></script>
+  <link href="..\node_modules\toastr\build\toastr.min.css" rel="stylesheet" />
+  <script src="..\node_modules\toastr\build\toastr.min.js" defer></script>
   <!-- Toast Library -->
   <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
   <script src="../assets/js/index.js" defer></script>
