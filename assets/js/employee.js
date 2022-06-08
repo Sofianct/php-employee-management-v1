@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const galleryButton = document.getElementById("displayGallery");
     const id = document.location.search.replace(/^.*?\=/, "");
     await showEmployee(id);
+
+    galleryButton.addEventListener("click", () => {
+        const galleryContainer = document.getElementById("galleryContainer");
+        const refreshContainer = document.getElementById("refreshContainer");
+        toogleDisplay(galleryContainer);
+        toogleDisplay(refreshContainer);
+        modifyText(galleryButton);
+    });
 });
 
 const dashboard = document.getElementById('dashboard');
@@ -51,4 +60,18 @@ async function showEmployee(id) {
         genderSelect.selectedIndex = "2";
     }
 
+}
+
+//toggle hidden class
+function toogleDisplay(element) {
+    element.classList.toggle("hidden");
+}
+
+//modify text element
+function modifyText(element) {
+    if (element.textContent === "Select Profile Image") {
+        element.textContent = "Hide Gallery";
+    } else {
+        element.textContent = "Select Profile Image";
+    }
 }

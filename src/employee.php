@@ -35,17 +35,12 @@ require_once('./library/sessionHelper.php');
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">Profile Picture</label>
                         <input type="hidden" name="photo" id="photo">
-                        <img id="image" class="form-control form__image" src="../assets/images/default.jpg"/>
+                        <img id="image" class="form-control form__image" src="../assets/images/default.jpg" />
                     </div>
                 </div>
-                <div class="col-1">
-                    <button type="button" class="btn btn-dark refreashGallery__button" id="refreshButton">Refresh</button>
-                </div>
-                <div class="col-9">
-                <?php 
+                <?php
                 require_once('./imageGallery.php');
                 ?>
-                </div>
             </div>
             <button type="button" id="displayGallery" class="btn btn-dark ms-5">Select Profile Image</button>
             <div class="row m-4">
