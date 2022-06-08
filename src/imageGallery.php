@@ -13,11 +13,9 @@ $profileImages = getProfileImages($num);
 <div class="col-9 hidden" id="galleryContainer">
     <div class="imageGallery__div" >
         <?php foreach ($profileImages as $profileImage) : ?>
-            <div>
-                <div class="d-block mb-4 h-100">
+                <div data-image class="d-block mb-4 h-100">
                     <img src=<?= $profileImage ?> class="img-fluid gallery__img rounded">
                 </div>
-            </div>
         <?php endforeach; ?>
     </div>
 </div>

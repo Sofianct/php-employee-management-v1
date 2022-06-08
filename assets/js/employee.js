@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const galleryButton = document.getElementById("displayGallery");
+    const imagesPicker = document.querySelectorAll("[data-image]>img");
     const id = document.location.search.replace(/^.*?\=/, "");
     await showEmployee(id);
 
@@ -9,6 +10,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         toogleDisplay(galleryContainer);
         toogleDisplay(refreshContainer);
         modifyText(galleryButton);
+    });
+
+    Array.from(imagesPicker).map((image) => {
+        image.addEventListener("click", (e) => {
+            const arrayImages = Array.from(imagesPicker);
+            const selectedImage = arrayImages.findIndex(element => element == e.target);
+            //add selected image style
+            if (!e.target.classList.contains("imageSelected")) {
+                e.target.classList.add("imageSelected");
+            }
+            //remove selected image style from the other images of the gallery
+            arrayImages.map((image, index) => {
+                if (index !== selectedImage && image.classList.contains("imageSelected")) {
+                    image.classList.remove("imageSelected");
+                }
+            })
+            //input hidden assign new src
+            const profileImage = document.getElementById("image");
+            const srcInputImage = document.getElementById("photo");
+            profileImage.src = e.target.src;
+            srcInputImage.value = e.target.src;
+        });
     });
 });
 
