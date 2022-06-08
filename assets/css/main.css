@@ -1,5 +1,26 @@
 @import url(./normalize.css);
 
+* {
+	padding: 0;
+	box-sizing: border-box;
+	font-style: 'Raleway', sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+	width: 100%;
+}
+
+.main__section {
+	margin: 3rem;
+}
+
 /* Custom style */
 .navbar {
 	margin-bottom: 1rem;
