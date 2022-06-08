@@ -1,7 +1,5 @@
 <?php
-
 require_once('./library/sessionHelper.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -87,9 +85,7 @@ require_once('./library/sessionHelper.php');
     </div>
 
   </main>
-  <footer>
-    <?php include_once("../assets/html/footer.html"); ?>
-  </footer>
+  <?php include_once("../assets/html/footer.html"); ?>
 
 </body>
 

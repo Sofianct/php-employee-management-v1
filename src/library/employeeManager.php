@@ -9,16 +9,6 @@
 
 if (session_status() == PHP_SESSION_NONE) session_start();
 
-$errors = [
-    'name' => "",
-    'lastName' => "",
-    'email' => "",
-    'age' => "",
-    'postalCode' => "",
-    'phoneNumber' => "",
-    'unique' => ""
-];
-
 function getEmployees()
 {
     $employees = json_decode(file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'), true);
@@ -79,12 +69,6 @@ function saveDate($data)
     file_put_contents($pathDir . $pathDb, json_encode($data, JSON_PRETTY_PRINT));
 }
 
-function removeAvatar($id)
-{
-    // TODO implement it
-}
-
-
 function getQueryStringParameters() //: array
 {
     return array();
@@ -126,7 +110,7 @@ function validateEmployee($employee, &$errors)
         $isValid = false;
         $errors['age'] = 'Age is mandatory';
     }
-    if (!preg_match(('/^[0-9]{5}$/i'), $employee['postalCode'])) {
+    if (!preg_match(('/^[0-9]{5,6}$/i'), $employee['postalCode'])) {
         $isValid = false;
         $errors['postalCode'] = 'This must be a valid postal code';
     }
@@ -134,14 +118,20 @@ function validateEmployee($employee, &$errors)
         $isValid = false;
         $errors['phoneNumber'] = 'This must be a valid phone number';
     }
+    // End Of validation
+    return $isValid;
+}
+
+function existEmployee($employee, &$errors)
+{
+    $isValidEmployee = true;
     //validate unique email
     $employees = getEmployees();
     foreach ($employees as $user) {
         if ($user["email"] == $employee["email"]) {
-            $isValid = false;
+            $isValidEmployee = false;
             $errors['unique'] = 'This employee already exists in the database';
         }
     }
-    // End Of validation
-    return $isValid;
+    return $isValidEmployee;
 }

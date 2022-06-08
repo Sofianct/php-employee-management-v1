@@ -2,7 +2,6 @@
 
 require('./employeeManager.php');
 require_once('./sessionHelper.php');
-//check session first of all
 
 if (session_status() == PHP_SESSION_NONE) session_start();
 
@@ -21,6 +20,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
             $employee = [
                 'id' => $newId,
+                'image' => "../assets/images/default.jpg",
                 'name' => "",
                 'lastName' => "",
                 'email' => "",
@@ -33,13 +33,25 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 'phoneNumber' => ""
             ];
 
+            $errors = [
+                'name' => "",
+                'lastName' => "",
+                'email' => "",
+                'age' => "",
+                'postalCode' => "",
+                'phoneNumber' => "",
+                'unique' => ""
+            ];
+
             $isValid = true;
+            $isValidEmployee = true;
 
             $employee = array_merge($employee, $newDataEmployee);
 
             $isValid = validateEmployee($employee, $errors);
+            $isValidEmployee = existEmployee($employee, $errors);
 
-            if ($isValid) {
+            if ($isValid && $isValidEmployee) {
                 echo json_encode(addEmployee($employee));
             } else {
                 echo json_encode($errors);
@@ -68,8 +80,27 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
         case 'PUT':
 
+            $errors = [
+                'name' => "",
+                'lastName' => "",
+                'email' => "",
+                'age' => "",
+                'postalCode' => "",
+                'phoneNumber' => "",
+                'unique' => ""
+            ];
+
+            $isValid = true;
+
             $newDataEmployee = json_decode(file_get_contents("php://input"), true);
-            echo json_encode(updateEmployee($newDataEmployee));
+            $isValid = validateEmployee($newDataEmployee, $errors);
+
+            if ($isValid) {
+                echo json_encode(updateEmployee($newDataEmployee));
+            } else {
+                echo json_encode($errors);
+            }
+
             break;
 
         default:

@@ -25,6 +25,7 @@ toastr.options = {
     "hideMethod": "fadeOut"
 }
 
+
 window.onload = async () => {
 
     await getEmployees(); //print employees
@@ -32,7 +33,7 @@ window.onload = async () => {
     initializeCreateButton();
     initializeUpdateButtons();
     initializeDeleteButtons();
-    initializeRow();
+    initializeRowsListener();
 
     //check session activity every 10 seconds
     const checkSession = async () => {
@@ -64,6 +65,7 @@ window.onload = async () => {
         // Add edit event listener to all edit buttons
         Array.from(editButtons).map(btn => {
             btn.addEventListener('click', async (e) => {
+                e.stopPropagation();
                 const employeeId = e.target.parentElement.getAttribute('data-id'); //get ID
                 const employee = await getEmployee(employeeId); //get data employee
                 showEditRow(employee, employeeId); //show edit form row
@@ -77,16 +79,18 @@ window.onload = async () => {
         // Add delete event listener to all delete buttons
         Array.from(deleteButtons).map(btn => {
             btn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const employeeId = e.target.parentElement.getAttribute('data-id');
                 deleteEmployee(employeeId);
             });
         });
     }
 
-    function initializeRow() {
-        const tableRow = document.querySelectorAll('[data-row]');
-        //Add event listener to get the employee id and display it in employee.php
-        Array.from(tableRow).map(btn => {
+    //initialize add event listener table rows
+    function initializeRowsListener() {
+        const rowBtn = document.querySelectorAll('[data-row]');
+
+        Array.from(rowBtn).map(btn => {
             btn.addEventListener('click', (e) => {
                 const id = e.target.parentElement.getAttribute('data-row');
                 window.document.location = '../src/employee.php' + '?listId=' + id;
@@ -137,7 +141,7 @@ window.onload = async () => {
             deleteBtn.appendChild(deleteIcon);
             btns.append(editBtn, deleteBtn);
 
-            img.setAttribute('src', 'https://mdbootstrap.com/img/new/avatars/8.jpg');
+            img.setAttribute('src', employee.image);
             img.classList.add('rounded-circle');
             img.style.width = "45px";
             img.style.height = "45px";
@@ -166,7 +170,7 @@ window.onload = async () => {
         const tr = document.createElement("tr");
         tr.id = "newEmployeeRow";
         //for each td insert input form
-        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td></td>
+        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td><img src="../assets/images/default.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
             <td><input form="newFormRow" type="text" name="name" class="form-control"></td>
             <td><input form="newFormRow" type="text" name="lastName" class="form-control"></td>
             <td><input form="newFormRow" type="email" name="email" class="form-control"></td>
@@ -254,7 +258,7 @@ window.onload = async () => {
 
         const firstRow = document.querySelector("tbody tr:first-child");
 
-        newRowEmployee.innerHTML = `<td><img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+        newRowEmployee.innerHTML = `<td><img src="${newEmployee.image}" class="rounded-circle" style="width: 45px; height: 45px;"></td>
         <td>${newEmployee.name}</td>
         <td>${newEmployee.lastName}</td>
         <td>${newEmployee.email}</td>
@@ -271,6 +275,7 @@ window.onload = async () => {
         //initialize delete and edit buttons for all the table
         initializeUpdateButtons();
         initializeDeleteButtons();
+        initializeRowsListener();
     }
 
     //cancel inline create employee
@@ -308,16 +313,16 @@ window.onload = async () => {
         editRow.id = "formRow";
 
         //for each td insert input form
-        editRow.innerHTML = `<form action="" method="post" id="editFormRow"><td></td>
-            <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control" required></td>
-            <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control" required></td>
-            <td><input value = "${employee.email}" form="editFormRow" type="email" name="email" class="form-control" required></td>
-            <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control" required></td>
-            <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control" required></td>
-            <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control" required></td>
-            <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control" required>
-            <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control" required>
-            </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="tel" name="phoneNumber" class="form-control" required></td>
+        editRow.innerHTML = `<form action="" method="post" id="editFormRow"><td><img src="${employee.image}" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+            <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control"></td>
+            <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control"></td>
+            <td><input value = "${employee.email}" form="editFormRow" type="email" name="email" class="form-control"></td>
+            <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control"></td>
+            <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control"></td>
+            <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control"></td>
+            <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control">
+            <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control">
+            </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="tel" name="phoneNumber" class="form-control"></td>
             <td><div class="d-flex justify-content-center">
             <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
             <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
@@ -341,7 +346,6 @@ window.onload = async () => {
             };
 
             const employeeUpdated = await updateEmployee(jsonData); //get updated data
-            displayUpdatedRow(employeeUpdated); //modified trow current employee
         })
 
         //remove form edit row and show employeeRow
@@ -368,8 +372,28 @@ window.onload = async () => {
         }
         const data = await response.json();
         console.log(data);
-        toastr.success('Employee succesfully updated!')
-        return data;
+        if (data.id) {
+            toastr.success('Employee succesfully updated!')
+            displayUpdatedRow(data); //modified trow current employee;
+        } else {
+            const errors = Object.values(data);
+            let message = "";
+            errors.map((error) => {
+                if (error !== "") {
+                    message += (error + "</br>");
+                }
+            });
+            //give error style after invalid inputs
+            const formEditEmployee = document.getElementById("editFormRow").parentElement;
+            const dataFormInput = formEditEmployee.querySelectorAll("td>input");
+            console.log(dataFormInput);
+            formEditEmployee.classList.add("errorValidation__tr");
+            Array.from(dataFormInput).map((td) => {
+                td.classList.add("errorValidation__td");
+            });
+            toastr.warning(`${message}`);
+        }
+
     }
 
     //display employee row updated

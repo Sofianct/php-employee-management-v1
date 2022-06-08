@@ -3,8 +3,53 @@ const employee = document.getElementById('employee');
 const returnBtn = document.getElementById('return');
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+    const galleryButton = document.getElementById("displayGallery");
+    const imagesPicker = document.querySelectorAll("[data-image]>img");
+    const arrayImages = Array.from(imagesPicker);
     const id = document.location.search.replace(/^.*?\=/, "");
+    const refreshButton = document.getElementById("refreshButton");
     await showEmployee(id);
+
+    // hide/show image gallery
+    galleryButton.addEventListener("click", () => {
+        const galleryContainer = document.getElementById("galleryContainer");
+        const refreshContainer = document.getElementById("refreshContainer");
+        toogleDisplay(galleryContainer);
+        toogleDisplay(refreshContainer);
+        modifyText(galleryButton);
+    });
+
+    //image picker
+    arrayImages.map((image) => {
+        image.addEventListener("click", (e) => {
+            const selectedImage = arrayImages.findIndex(element => element == e.target);
+            //add selected image style
+            if (!e.target.classList.contains("imageSelected")) {
+                e.target.classList.add("imageSelected");
+            }
+            //remove selected image style from the other images of the gallery
+            arrayImages.map((image, index) => {
+                if (index !== selectedImage && image.classList.contains("imageSelected")) {
+                    image.classList.remove("imageSelected");
+                }
+            })
+            //input hidden assign new src
+            const profileImage = document.getElementById("image");
+            const srcInputImage = document.getElementById("photo");
+            profileImage.src = e.target.src;
+            srcInputImage.value = e.target.src;
+        });
+    });
+
+    refreshButton.addEventListener("click", async () => {
+        const random = Math.floor(Math.random() * 71); //limit 70 beacuse we add 10 by request and the limit is 80
+        const newArrayImages = await refreshGallery(random);
+        arrayImages.map((newImage, index) => {
+            newImage.src = newArrayImages[index];
+        });
+    });
+
     updateEmployee();
 });
 
@@ -50,6 +95,7 @@ function updateEmployee() {
 
         const jsonData = Object.fromEntries(formData.entries());
 
+        console.log(jsonData);
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -81,6 +127,8 @@ async function showEmployee(id) {
     const data = await response.json();
     console.log(data);
 
+    const image = document.getElementById('image');
+    const photo = document.getElementById('photo'); //input image field hidden
     const employeeId = document.getElementById('employeeId');
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
@@ -93,6 +141,8 @@ async function showEmployee(id) {
     const postalCode = document.getElementById('postalCode');
     const phoneNumber = document.getElementById('phoneNumber');
 
+    image.src = data.image;
+    photo.setAttribute('value', data.image);
     employeeId.setAttribute('value', data.id);
     name.setAttribute('value', data.name);
     lastName.setAttribute('value', data.lastName);
@@ -115,4 +165,31 @@ async function showEmployee(id) {
     dashboard.classList.remove('active');
     employee.classList.add('active');
 
+}
+
+//toggle hidden class
+function toogleDisplay(element) {
+    element.classList.toggle("hidden");
+}
+
+//modify text element
+function modifyText(element) {
+    if (element.textContent === "Select Profile Image") {
+        element.textContent = "Hide Gallery";
+    } else {
+        element.textContent = "Select Profile Image";
+    }
+}
+
+async function refreshGallery(random) {
+    console.log(random);
+    const response = await fetch(`./library/avatarsApi.php?getRandom=${random}`, {
+        method: "GET",
+        headers: {
+            "content-type": "application/json"
+        },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
 }

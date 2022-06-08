@@ -1,8 +1,7 @@
 <?php
-
 require_once('./library/sessionHelper.php');
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +9,8 @@ require_once('./library/sessionHelper.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,6 +21,9 @@ require_once('./library/sessionHelper.php');
     <link href="../node_modules/toastr/build/toastr.min.css" rel="stylesheet" />
     <script src="../node_modules/toastr/build/toastr.min.js" defer></script>
 
+    <!-- Bootstrap -->
+
+    <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
     <script src="../assets/js/employee.js" defer></script>
     <link rel="stylesheet" href="../assets/css/main.css">
     <title>Employee Management</title>
@@ -35,6 +39,22 @@ require_once('./library/sessionHelper.php');
 
         <form id="updateEmployee" method="PUT" action="">
             <!-- 2 column grid layout with text inputs -->
+            <div class="row m-4">
+                <div class="col-2">
+                    <div class="form-outline">
+                        <label class="form-label" for="form3Example1">Profile Picture</label>
+                        <input type="hidden" name="image" id="photo">
+                        <img id="image" class="form-control form__image" src="../assets/images/default.jpg" />
+                    </div>
+                </div>
+                <div class="col-1 hidden" id="refreshContainer">
+                    <button type="button" class="btn btn-dark refreashGallery__button" id="refreshButton">Refresh</button>
+                </div>
+                <?php
+                require_once('./imageGallery.php');
+                ?>
+            </div>
+            <button type="button" id="displayGallery" class="btn btn-dark ms-5">Select Profile Image</button>
             <div class="row m-4">
                 <div class="col">
                     <div class="form-outline">
@@ -123,9 +143,8 @@ require_once('./library/sessionHelper.php');
 
     </main>
 
-    <footer>
-        <?php include_once("../assets/html/footer.html"); ?>
-    </footer>
+    <?php include_once("../assets/html/footer.html"); ?>
+
 
 </body>
 

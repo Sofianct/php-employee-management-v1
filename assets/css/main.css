@@ -1,10 +1,33 @@
 @import url(./normalize.css);
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+* {
+	padding: 0;
+	box-sizing: border-box;
+	font-style: 'Raleway', sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+	width: 100%;
+}
+
+.main__section {
+	margin: 3rem;
+}
 
 /* Custom style */
 .navbar {
 	margin-bottom: 1rem;
 }
 
+/* Button Web Style */
 button {
 	background: none;
 	color: inherit;
@@ -23,10 +46,6 @@ button {
 .newEmployee__button>i:hover,
 .btn>i:hover {
 	color: #636363;
-}
-
-.hidden {
-	display: none;
 }
 
 /* Modal Snippet*/
@@ -132,10 +151,42 @@ button {
 	margin: 100px auto;
 }
 
+/* Input Validation Style */
 .errorValidation__tr {
 	background-color: rgb(204, 248, 204);
 }
 
 .errorValidation__td {
 	background-color: #f2acac;
+}
+
+/* Image Gallery */
+.form__image {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+.imageGallery__div{
+	display: grid; 
+	grid-template-columns: repeat(5, 1fr); 
+	grid-template-rows: repeat(2, 1fr); 
+	gap: 10px 10px; 
+	width: 100%;
+}
+
+.gallery__img{
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+.imageSelected{
+	box-shadow:0px 12px 22px 1px #333;
+}
+
+/* Hide Class */
+.hidden {
+	display: none;
 }
