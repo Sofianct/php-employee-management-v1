@@ -33,6 +33,16 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
                 'phoneNumber' => ""
             ];
 
+            $errors = [
+                'name' => "",
+                'lastName' => "",
+                'email' => "",
+                'age' => "",
+                'postalCode' => "",
+                'phoneNumber' => "",
+                'unique' => ""
+            ];
+
             $isValid = true;
             $isValidEmployee = true;
 
@@ -70,8 +80,27 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 
         case 'PUT':
 
+            $errors = [
+                'name' => "",
+                'lastName' => "",
+                'email' => "",
+                'age' => "",
+                'postalCode' => "",
+                'phoneNumber' => "",
+                'unique' => ""
+            ];
+
+            $isValid = true;
+
             $newDataEmployee = json_decode(file_get_contents("php://input"), true);
-            echo json_encode(updateEmployee($newDataEmployee));
+            $isValid = validateEmployee($newDataEmployee, $errors);
+
+            if ($isValid) {
+                echo json_encode(updateEmployee($newDataEmployee));
+            } else {
+                echo json_encode($errors);
+            }
+
             break;
 
         default:

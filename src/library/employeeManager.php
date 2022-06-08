@@ -9,16 +9,6 @@
 
 if (session_status() == PHP_SESSION_NONE) session_start();
 
-$errors = [
-    'name' => "",
-    'lastName' => "",
-    'email' => "",
-    'age' => "",
-    'postalCode' => "",
-    'phoneNumber' => "",
-    'unique' => ""
-];
-
 function getEmployees()
 {
     $employees = json_decode(file_get_contents(dirname(__DIR__, 2) . './resources/employees.json'), true);
@@ -120,7 +110,7 @@ function validateEmployee($employee, &$errors)
         $isValid = false;
         $errors['age'] = 'Age is mandatory';
     }
-    if (!preg_match(('/^[0-9]{5}$/i'), $employee['postalCode'])) {
+    if (!preg_match(('/^[0-9]{5,6}$/i'), $employee['postalCode'])) {
         $isValid = false;
         $errors['postalCode'] = 'This must be a valid postal code';
     }
@@ -143,4 +133,5 @@ function existEmployee($employee, &$errors)
             $errors['unique'] = 'This employee already exists in the database';
         }
     }
+    return $isValidEmployee;
 }

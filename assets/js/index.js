@@ -275,6 +275,7 @@ window.onload = async () => {
         //initialize delete and edit buttons for all the table
         initializeUpdateButtons();
         initializeDeleteButtons();
+        initializeRowsListener();
     }
 
     //cancel inline create employee
@@ -312,16 +313,16 @@ window.onload = async () => {
         editRow.id = "formRow";
 
         //for each td insert input form
-        editRow.innerHTML = `<form action="" method="post" id="editFormRow"><td></td>
-            <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control" required></td>
-            <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control" required></td>
-            <td><input value = "${employee.email}" form="editFormRow" type="email" name="email" class="form-control" required></td>
-            <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control" required></td>
-            <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control" required></td>
-            <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control" required></td>
-            <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control" required>
-            <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control" required>
-            </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="tel" name="phoneNumber" class="form-control" required></td>
+        editRow.innerHTML = `<form action="" method="post" id="editFormRow"><td><img src="${employee.image}" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+            <td><input value = "${employee.name}" form="editFormRow" type="text" name="name" class="form-control"></td>
+            <td><input value = "${employee.lastName}" form="editFormRow" type="text" name="lastName" class="form-control"></td>
+            <td><input value = "${employee.email}" form="editFormRow" type="email" name="email" class="form-control"></td>
+            <td><input value = "${employee.age}" form="editFormRow" type="number" name="age" class="form-control"></td>
+            <td><input value = "${employee.streetAddress}" form="editFormRow" type="text" name="streetAddress" class="form-control"></td>
+            <td><input value = "${employee.city}" form="editFormRow" type="text" name="city" class="form-control"></td>
+            <td><input value = "${employee.state}" form="editFormRow" type="text" name="state" class="form-control">
+            <td><input value = "${employee.postalCode}" form="editFormRow" type="text" name="postalCode" class="form-control">
+            </td><td><input value = "${employee.phoneNumber}" form="editFormRow" type="tel" name="phoneNumber" class="form-control"></td>
             <td><div class="d-flex justify-content-center">
             <button id="btnUpdate" type="submit" form="editFormRow" class="btn btn-link"><i class="fa-solid fa-circle-check link-dark p-2"></i></button>
             <button id="btnCancel" class="btn btn-link"><i class="fa-solid fa-circle-xmark link-dark p-2"></i></button>
@@ -345,7 +346,6 @@ window.onload = async () => {
             };
 
             const employeeUpdated = await updateEmployee(jsonData); //get updated data
-            displayUpdatedRow(employeeUpdated); //modified trow current employee
         })
 
         //remove form edit row and show employeeRow
@@ -372,8 +372,28 @@ window.onload = async () => {
         }
         const data = await response.json();
         console.log(data);
-        toastr.success('Employee succesfully updated!')
-        return data;
+        if (data.id) {
+            toastr.success('Employee succesfully updated!')
+            displayUpdatedRow(data); //modified trow current employee;
+        } else {
+            const errors = Object.values(data);
+            let message = "";
+            errors.map((error) => {
+                if (error !== "") {
+                    message += (error + "</br>");
+                }
+            });
+            //give error style after invalid inputs
+            const formEditEmployee = document.getElementById("editFormRow").parentElement;
+            const dataFormInput = formEditEmployee.querySelectorAll("td>input");
+            console.log(dataFormInput);
+            formEditEmployee.classList.add("errorValidation__tr");
+            Array.from(dataFormInput).map((td) => {
+                td.classList.add("errorValidation__td");
+            });
+            toastr.warning(`${message}`);
+        }
+
     }
 
     //display employee row updated
