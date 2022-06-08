@@ -46,12 +46,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+    updateEmployee();
 });
 
 const dashboard = document.getElementById('dashboard');
 dashboard.addEventListener('click', () => {
     window.location.href = "./dashboard.php";
 });
+
+function updateEmployee() {
+    const url = `./library/employeeController.php`; //url should be the same as the selected employee
+    const form = document.getElementById('updateEmployee');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        let jsonData = Object.fromEntries(formData.entries());
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+        });
+
+        let result = await response.text();
+
+        console.log(result);
+    });
+}
 
 async function showEmployee(id) {
     const response = await fetch(`./library/employeeController.php?listId=${id}`, {
@@ -65,6 +90,7 @@ async function showEmployee(id) {
 
     const image = document.getElementById('image');
     const photo = document.getElementById('photo'); //input image field hidden
+    const employeeId = document.getElementById('employeeId');
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -78,6 +104,7 @@ async function showEmployee(id) {
 
     image.src = data.image;
     photo.setAttribute('value', data.image);
+    employeeId.setAttribute('value', data.id);
     name.setAttribute('value', data.name);
     lastName.setAttribute('value', data.lastName);
     email.setAttribute('value', data.email);

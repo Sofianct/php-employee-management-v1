@@ -5,6 +5,7 @@ const newEmployeeButton = document.getElementById("newEmployee");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
 const urlSessionHelper = "./library/sessionHelper.php";
+const formUpdateEmployee = document.getElementById('updateEmployee');
 
 // Toastr Options Library
 toastr.options = {
@@ -23,6 +24,7 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 }
+
 
 window.onload = async () => {
 
@@ -103,7 +105,7 @@ window.onload = async () => {
             }
         });
         const data = await res.json();
-        console.log(data);
+        //console.log(data);
         data.forEach(employee => {
             const tbody = document.getElementById('tbody');
             const tr = document.createElement('tr');
