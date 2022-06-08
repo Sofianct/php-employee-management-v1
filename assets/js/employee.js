@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id = document.location.search.replace(/^.*?\=/, "");
     const refreshButton = document.getElementById("refreshButton");
     await showEmployee(id);
+    logOut();
+
 
     // hide/show image gallery
     galleryButton.addEventListener("click", () => {
@@ -192,4 +194,17 @@ async function refreshGallery(random) {
     const data = await response.json();
     console.log(data);
     return data;
+}
+
+//log out button
+function logOut() {
+    const logOutBtn = document.getElementById('logout');
+    logOutBtn.addEventListener('click', async () => {
+        const response = await fetch(urlLoginController + '?logout', {
+            method: 'GET'
+        });
+        if (response.ok) {
+            window.location.href = '../index.php';
+        }
+    });
 }

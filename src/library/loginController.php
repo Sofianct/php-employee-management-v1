@@ -9,6 +9,4 @@ if (isset($_POST['email'])) {
 //Logout
 if (isset($_GET['logout'])) {
     destroySession();
-    header('Location: ../../index.php');
 }
-

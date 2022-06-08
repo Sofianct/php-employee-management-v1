@@ -162,31 +162,35 @@ button {
 
 /* Image Gallery */
 .form__image {
-	width: 200px;
-	height: 200px;
+	width: 8rem;
+	height: 8rem;
 	object-fit: cover;
 }
 
-.imageGallery__div{
-	display: grid; 
-	grid-template-columns: repeat(5, 1fr); 
-	grid-template-rows: repeat(2, 1fr); 
-	gap: 10px 10px; 
+.imageGallery__div {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 5px 5px;
 	width: 100%;
 }
 
-.gallery__img{
-	width: 200px;
-	height: 200px;
+.gallery__img {
+	width: 8rem;
+	height: 8rem;
 	object-fit: cover;
 	cursor: pointer;
 }
 
-.imageSelected{
-	box-shadow:0px 12px 22px 1px #333;
+.imageSelected {
+	box-shadow: 0px 12px 22px 1px #333;
 }
 
 /* Hide Class */
 .hidden {
 	display: none;
+}
+
+.mb-4 {
+	margin-bottom: 0.5rem !important;
 }

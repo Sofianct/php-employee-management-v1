@@ -15,8 +15,7 @@ require_once('./library/sessionHelper.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
-    <!-- <script src="../assets/js/index.js" defer></script> -->
-
+    <link rel="shortcut icon" href="../assets/images/logo2.png" type="image/x-icon">
     <!-- Toast Library -->
     <link href="../node_modules/toastr/build/toastr.min.css" rel="stylesheet" />
     <script src="../node_modules/toastr/build/toastr.min.js" defer></script>
@@ -136,9 +135,11 @@ require_once('./library/sessionHelper.php');
                 </div>
             </div>
 
-            <!-- Submit button -->
-            <button type="submit" form="updateEmployee" class="btn btn-primary btn-block ms-5">Submit</button>
-            <button type="button" id="return" class="btn btn-secondary btn-block ms-2">Return</button>
+            <!-- Submit buttons -->
+            <div class="mb-4 col text-center">
+                <button type="submit" form="updateEmployee" class="btn btn-primary btn-block">Submit</button>
+                <button type="button" id="return" class="btn btn-secondary btn-block ms-3">Return</button>
+            </div>
         </form>
 
     </main>

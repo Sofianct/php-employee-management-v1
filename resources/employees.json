@@ -1,19 +1,5 @@
 [
     {
-        "id": "1",
-        "image": "https:\/\/images.unsplash.com\/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
-        "name": "Rack",
-        "lastName": "Lei",
-        "email": "jackon@network.com",
-        "gender": "man",
-        "city": "San Jone",
-        "streetAddress": "2222",
-        "state": "CA",
-        "age": "26",
-        "postalCode": "39221",
-        "phoneNumber": "00346659858"
-    },
-    {
         "id": "2",
         "image": "https:\/\/images.generated.photos\/3if2UWmu3vUMqIWoWPeOJIJzJUQKFj8zw_QR2wDd3kY\/rs:fit:512:512\/czM6Ly9pY29uczgu\/Z3Bob3Rvcy1wcm9k\/LnBob3Rvcy92M18w\/NDA4NjI2LmpwZw.jpg",
         "name": "John",
@@ -42,13 +28,13 @@
         "phoneNumber": "9983632461"
     },
     {
-        "id": 4,
-        "image": "https:\/\/images.generated.photos\/qBZ5ONNBTJU3tN0mqnb6vQY1_ox4miS5FZl5ohzMWz8\/rs:fit:512:512\/czM6Ly9pY29uczgu\/Z3Bob3Rvcy1wcm9k\/LnBob3Rvcy92M18w\/OTYyNDM2LmpwZw.jpg",
+        "id": "4",
+        "image": "https:\/\/images.generated.photos\/XvUenxSFx9zaDYVxgxfNncLEinVtgZdALNQY4znLg2w\/rs:fit:512:512\/czM6Ly9pY29uczgu\/Z3Bob3Rvcy1wcm9k\/LnBob3Rvcy92M18w\/NDAyMzk0LmpwZw.jpg",
         "name": "Richard",
         "lastName": "Desmond",
         "email": "dismond@foo.com",
         "gender": "man",
-        "age": "30",
+        "age": "29",
         "streetAddress": "90",
         "city": "Salt lake city",
         "state": "UT",
@@ -98,13 +84,13 @@
         "phoneNumber": "45372788192"
     },
     {
-        "id": 8,
+        "id": "8",
         "image": "https:\/\/images.generated.photos\/PIAykxazkyiqO6dfynHq16A71T_iP_HhvKZbjorH--g\/rs:fit:512:512\/czM6Ly9pY29uczgu\/Z3Bob3Rvcy1wcm9k\/LnBob3Rvcy92M18w\/ODIxMzA1LmpwZw.jpg",
         "name": "Robert",
         "lastName": "Thomson",
         "email": "jackon@network.com",
         "gender": "man",
-        "age": 24,
+        "age": "24",
         "streetAddress": "126",
         "city": "New Orleans",
         "state": "LU",

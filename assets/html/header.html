@@ -1,20 +1,72 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand">Brand</a>
-        <!-- <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse9">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <div id="navbarCollapse9">
-            <!--  class="collapse navbar-collapse" -->
-            <div class="navbar-nav">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
+        nav {
+            background-color: rgb(101, 17, 161);
+            color: black;
+            height: 4rem;
+        }
+
+        .navbar {
+            height: 3.5rem;
+            font-family: 'Cabin', sans-serif;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            border-bottom: 1px solid white;
+        }
+
+        a,
+        .nav-link .active {
+            text-decoration: none;
+            color: rgb(25, 20, 20);
+        }
+
+        a,
+        .nav-link {
+            text-decoration: none;
+            color: white;
+        }
+
+        img {
+            margin-left: 2rem;
+            height: 3rem;
+        }
+
+        .navbar-brand:hover {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand"><img src="../assets/images/logo2.png" class="logo" alt="">
+                Employee Manager</a>
+            <div class="nav nav-tabs">
                 <a href="#" id="dashboard" class="nav-item nav-link active">Dashboard</a>
                 <a href="#" id="employee" class="nav-item nav-link pe-none">Employee</a>
+                <a href="#" id="logout" class="nav-item nav-link">Log out
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
             </div>
-            <!-- <form class="d-flex ms-auto">
-                <input type="text" class="form-control me-sm-2" placeholder="Search">
-                <button type="submit" class="btn btn-outline-primary">Search</button>
-            </form> -->
-
         </div>
-    </div>
-</nav>
+    </nav>
+</body>
+
+</html>

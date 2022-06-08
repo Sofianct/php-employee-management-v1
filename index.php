@@ -1,8 +1,8 @@
-<?php 
+<?php
 
-if (isset($_GET['sessionExpired'])){
+if (isset($_GET['sessionExpired'])) {
     $sessionExpired = true;
-}else{
+} else {
     $sessionExpired = false;
 }
 
@@ -19,6 +19,7 @@ if (isset($_GET['sessionExpired'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ae63adffc0.js" crossorigin="anonymous" defer></script>
     <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="shortcut icon" href="./assets/images/logo2.png" type="image/x-icon">
     <title>Employee Management - Login</title>
 </head>
 
@@ -33,8 +34,8 @@ if (isset($_GET['sessionExpired'])){
                     <form id="login" method="POST" action="">
 
                         <div class="text-center">
-                            <img src="" style="width: 185px;" alt="logo">
-                            <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                            <img src="./assets/images/logo2.png" style="width: 185px;" alt="logo">
+                            <h4 class="mt-1 mb-5 pb-1">EMPLOYEE MANAGER</h4>
                         </div>
                         <!-- Email input -->
                         <div class="form-outline mb-4">
@@ -62,7 +63,6 @@ if (isset($_GET['sessionExpired'])){
     </section>
 
     <script>
-
         //Variables
         const formLogin = document.getElementById("login");
 
@@ -99,7 +99,6 @@ if (isset($_GET['sessionExpired'])){
             }
 
         };
-
     </script>
 </body>
 

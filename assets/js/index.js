@@ -5,6 +5,7 @@ const newEmployeeButton = document.getElementById("newEmployee");
 const urlController = "./library/employeeController.php";
 const urlControllerGet = "./library/employeeController.php?id=";
 const urlSessionHelper = "./library/sessionHelper.php";
+const urlLoginController = './library/loginController.php';
 const formUpdateEmployee = document.getElementById('updateEmployee');
 
 // Toastr Options Library
@@ -34,6 +35,7 @@ window.onload = async () => {
     initializeUpdateButtons();
     initializeDeleteButtons();
     initializeRowsListener();
+    logOut();
 
     //check session activity every 10 seconds
     const checkSession = async () => {
@@ -461,6 +463,19 @@ window.onload = async () => {
         console.log(data);
         toastr.success('Employee succesfully deleted!')
         return id;
+    }
+
+    //log out button
+    function logOut() {
+        const logOutBtn = document.getElementById('logout');
+        logOutBtn.addEventListener('click', async () => {
+            const response = await fetch(urlLoginController + '?logout', {
+                method: 'GET'
+            });
+            if (response.ok) {
+                window.location.href = '../index.php';
+            }
+        });
     }
 
     //toggle hidden class
