@@ -4,13 +4,13 @@
         "name": "Rack",
         "lastName": "Lei",
         "email": "jackon@network.com",
-        "gender": "male",
+        "gender": "man",
         "city": "San Jone",
-        "streetAddress": "126",
+        "streetAddress": "2222",
         "state": "CA",
-        "age": "24",
-        "postalCode": "394221",
-        "phoneNumber": "7383627627"
+        "age": "26",
+        "postalCode": "39221",
+        "phoneNumber": "00346659858"
     },
     {
         "id": "2",
@@ -23,10 +23,10 @@
         "state": "WA",
         "age": "34",
         "postalCode": "09889",
-        "phoneNumber": "1283645645"
+        "phoneNumber": "665988999"
     },
     {
-        "id": 3,
+        "id": "3",
         "name": "Leila",
         "lastName": "Mills",
         "email": "mills@leila.com",
@@ -34,7 +34,7 @@
         "city": "San Diego",
         "streetAddress": "55",
         "state": "CA",
-        "age": 29,
+        "age": "29",
         "postalCode": "098765",
         "phoneNumber": "9983632461"
     },
@@ -43,7 +43,7 @@
         "name": "Richard",
         "lastName": "Desmond",
         "email": "dismond@foo.com",
-        "gender": "male",
+        "gender": "man",
         "age": "30",
         "streetAddress": "90",
         "city": "Salt lake city",
@@ -52,12 +52,12 @@
         "phoneNumber": "55236595"
     },
     {
-        "id": 5,
+        "id": "5",
         "name": "Susan",
         "lastName": "Smith",
         "email": "susanmith@baz.com",
         "gender": "woman",
-        "age": 28,
+        "age": "28",
         "streetAddress": "43",
         "city": "Louisville",
         "state": "KNT",

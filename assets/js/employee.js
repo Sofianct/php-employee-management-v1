@@ -1,13 +1,44 @@
+const dashboard = document.getElementById('dashboard');
+const employee = document.getElementById('employee');
+const returnBtn = document.getElementById('return');
+
 document.addEventListener('DOMContentLoaded', async () => {
     const id = document.location.search.replace(/^.*?\=/, "");
     await showEmployee(id);
     updateEmployee();
 });
 
-const dashboard = document.getElementById('dashboard');
 dashboard.addEventListener('click', () => {
     window.location.href = "./dashboard.php";
+    dashboard.classList.add('active');
+    employee.classList.remove('active');
 });
+
+returnBtn.addEventListener('click', () => {
+    window.location.href = "./dashboard.php";
+    dashboard.classList.add('active');
+    employee.classList.remove('active');
+});
+
+// Toastr Options Library
+//Command: toastr["success"]("Are you the six fingered man?")
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
 
 function updateEmployee() {
     const url = `./library/employeeController.php`; //url should be the same as the selected employee
@@ -17,7 +48,7 @@ function updateEmployee() {
         e.preventDefault();
         const formData = new FormData(e.target);
 
-        let jsonData = Object.fromEntries(formData.entries());
+        const jsonData = Object.fromEntries(formData.entries());
 
         const response = await fetch(url, {
             method: 'PUT',
@@ -27,9 +58,16 @@ function updateEmployee() {
             body: JSON.stringify(jsonData)
         });
 
-        let result = await response.text();
-
+        const result = await response.json();
+        if (response.ok) {
+            toastr.success('Updated successfully!');
+            console.log(result.id);
+            window.location.href = `./employee.php?listId=${result.id}`;
+        } else {
+            toastr.error('Please refresh the browser and try again');
+        }
         console.log(result);
+
     });
 }
 
@@ -73,5 +111,8 @@ async function showEmployee(id) {
     } else {
         genderSelect.selectedIndex = "2";
     }
+
+    dashboard.classList.remove('active');
+    employee.classList.add('active');
 
 }
