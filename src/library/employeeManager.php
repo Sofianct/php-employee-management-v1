@@ -79,12 +79,6 @@ function saveDate($data)
     file_put_contents($pathDir . $pathDb, json_encode($data, JSON_PRETTY_PRINT));
 }
 
-function removeAvatar($id)
-{
-    // TODO implement it
-}
-
-
 function getQueryStringParameters() //: array
 {
     return array();

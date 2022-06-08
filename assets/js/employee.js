@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const galleryButton = document.getElementById("displayGallery");
     const imagesPicker = document.querySelectorAll("[data-image]>img");
+    const arrayImages = Array.from(imagesPicker);
     const id = document.location.search.replace(/^.*?\=/, "");
     const refreshButton = document.getElementById("refreshButton");
     await showEmployee(id);
@@ -16,9 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     //image picker
-    Array.from(imagesPicker).map((image) => {
+    arrayImages.map((image) => {
         image.addEventListener("click", (e) => {
-            const arrayImages = Array.from(imagesPicker);
             const selectedImage = arrayImages.findIndex(element => element == e.target);
             //add selected image style
             if (!e.target.classList.contains("imageSelected")) {
@@ -38,18 +38,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    initializeRefreshButton();
-
-    function initializeRefreshButton() {
-        refreshButton.addEventListener(async () => {
-            const random = Math.floor(Math.random() * 70);
-            const response = await fetch(`./library/avatarsApi.php?getRandom=${random}`, {
-                method: "GET",
-            });
-            const data = await response.text();
-            console.log(data);
+    refreshButton.addEventListener("click", async () => {
+        const random = Math.floor(Math.random() * 71); //limit 70 beacuse we add 10 by request and the limit is 80
+        const newArrayImages = await refreshGallery(random);
+        arrayImages.map((newImage, index) => {
+            newImage.src = newArrayImages[index];
         });
-    }
+    });
 
 });
 
@@ -69,7 +64,7 @@ async function showEmployee(id) {
     console.log(data);
 
     const image = document.getElementById('image');
-    const photo = document.getElementById('photo'); //input iamge field hidden
+    const photo = document.getElementById('photo'); //input image field hidden
     const name = document.getElementById('name');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -115,4 +110,17 @@ function modifyText(element) {
     } else {
         element.textContent = "Select Profile Image";
     }
+}
+
+async function refreshGallery(random) {
+    console.log(random);
+    const response = await fetch(`./library/avatarsApi.php?getRandom=${random}`, {
+        method: "GET",
+        headers: {
+            "content-type": "application/json"
+        },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
 }
