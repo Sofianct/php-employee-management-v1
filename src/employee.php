@@ -34,7 +34,7 @@ require_once('./library/sessionHelper.php');
                 <div class="col-2">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example1">Profile Picture</label>
-                        <input type="hidden" name="photo" id="photo">
+                        <input type="hidden" name="image" id="photo">
                         <img id="image" class="form-control form__image" src="../assets/images/default.jpg" />
                     </div>
                 </div>

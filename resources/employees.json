@@ -110,19 +110,5 @@
         "state": "LU",
         "postalCode": "63281",
         "phoneNumber": "91232876454"
-    },
-    {
-        "id": 9,
-        "image": "..\/assets\/images\/default.jpg",
-        "name": "Alicia",
-        "lastName": "Cembranos",
-        "email": "alicembru15@gmail.com",
-        "gender": "",
-        "age": "32",
-        "streetAddress": "123",
-        "city": "Leon",
-        "state": "ES",
-        "postalCode": "24007",
-        "phoneNumber": "7383627627"
     }
 ]

@@ -65,6 +65,7 @@ window.onload = async () => {
         // Add edit event listener to all edit buttons
         Array.from(editButtons).map(btn => {
             btn.addEventListener('click', async (e) => {
+                e.stopPropagation();
                 const employeeId = e.target.parentElement.getAttribute('data-id'); //get ID
                 const employee = await getEmployee(employeeId); //get data employee
                 showEditRow(employee, employeeId); //show edit form row
@@ -78,6 +79,7 @@ window.onload = async () => {
         // Add delete event listener to all delete buttons
         Array.from(deleteButtons).map(btn => {
             btn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const employeeId = e.target.parentElement.getAttribute('data-id');
                 deleteEmployee(employeeId);
             });

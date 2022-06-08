@@ -64,17 +64,18 @@ function updateEmployee() {
 
         let jsonData = Object.fromEntries(formData.entries());
 
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(jsonData)
-        });
+        console.log(jsonData);
+        // const response = await fetch(url, {
+        //     method: 'PUT',
+        //     headers: {
+        //         "content-type": "application/json"
+        //     },
+        //     body: JSON.stringify(jsonData)
+        // });
 
-        let result = await response.text();
+        // let result = await response.text();
 
-        console.log(result);
+        // console.log(result);
     });
 }
 
