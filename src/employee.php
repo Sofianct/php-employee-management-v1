@@ -134,7 +134,7 @@ require_once('./library/sessionHelper.php');
     </main>
 
     <footer>
-        <?php include_once("../assets/html/footer.html"); ?>
+        <!-- <?php include_once("../assets/html/footer.html"); ?> -->
     </footer>
 
 </body>
