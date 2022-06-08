@@ -34,12 +34,14 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
             ];
 
             $isValid = true;
+            $isValidEmployee = true;
 
             $employee = array_merge($employee, $newDataEmployee);
 
             $isValid = validateEmployee($employee, $errors);
+            $isValidEmployee = existEmployee($employee, $errors);
 
-            if ($isValid) {
+            if ($isValid && $isValidEmployee) {
                 echo json_encode(addEmployee($employee));
             } else {
                 echo json_encode($errors);

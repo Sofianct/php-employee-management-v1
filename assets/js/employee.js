@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', async () => {
+
     const galleryButton = document.getElementById("displayGallery");
     const imagesPicker = document.querySelectorAll("[data-image]>img");
     const id = document.location.search.replace(/^.*?\=/, "");
+    const refreshButton = document.getElementById("refreshButton");
     await showEmployee(id);
 
+    // hide/show image gallery
     galleryButton.addEventListener("click", () => {
         const galleryContainer = document.getElementById("galleryContainer");
         const refreshContainer = document.getElementById("refreshContainer");
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         modifyText(galleryButton);
     });
 
+    //image picker
     Array.from(imagesPicker).map((image) => {
         image.addEventListener("click", (e) => {
             const arrayImages = Array.from(imagesPicker);
@@ -33,6 +37,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             srcInputImage.value = e.target.src;
         });
     });
+
+    initializeRefreshButton();
+
+    function initializeRefreshButton() {
+        refreshButton.addEventListener(async () => {
+            const random = Math.floor(Math.random() * 70);
+            const response = await fetch(`./library/avatarsApi.php?getRandom=${random}`, {
+                method: "GET",
+            });
+            const data = await response.text();
+            console.log(data);
+        });
+    }
+
 });
 
 const dashboard = document.getElementById('dashboard');

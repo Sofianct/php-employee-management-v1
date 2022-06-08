@@ -45,4 +45,6 @@ function getProfileImages($number)
     }
 }
 
-
+if (isset($_GET["getRandom"])) {
+    echo getProfileImages($_GET["getRandom"]);
+}

@@ -38,6 +38,9 @@ require_once('./library/sessionHelper.php');
                         <img id="image" class="form-control form__image" src="../assets/images/default.jpg" />
                     </div>
                 </div>
+                <div class="col-1 hidden" id="refreshContainer">
+                    <button type="button" class="btn btn-dark refreashGallery__button" id="refreshButton">Refresh</button>
+                </div>
                 <?php
                 require_once('./imageGallery.php');
                 ?>

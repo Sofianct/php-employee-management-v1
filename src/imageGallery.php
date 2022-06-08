@@ -7,9 +7,6 @@ $num = 0; //initialize
 $profileImages = getProfileImages($num);
 
 ?>
-<div class="col-1 hidden" id="refreshContainer">
-    <button type="button" class="btn btn-dark refreashGallery__button" id="refreshButton">Refresh</button>
-</div>
 <div class="col-9 hidden" id="galleryContainer">
     <div class="imageGallery__div" >
         <?php foreach ($profileImages as $profileImage) : ?>

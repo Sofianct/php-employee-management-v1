@@ -134,14 +134,19 @@ function validateEmployee($employee, &$errors)
         $isValid = false;
         $errors['phoneNumber'] = 'This must be a valid phone number';
     }
+    // End Of validation
+    return $isValid;
+}
+
+function existEmployee($employee, &$errors)
+{
+    $isValidEmployee = true;
     //validate unique email
     $employees = getEmployees();
     foreach ($employees as $user) {
         if ($user["email"] == $employee["email"]) {
-            $isValid = false;
+            $isValidEmployee = false;
             $errors['unique'] = 'This employee already exists in the database';
         }
     }
-    // End Of validation
-    return $isValid;
 }

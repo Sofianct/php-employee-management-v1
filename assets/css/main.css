@@ -5,6 +5,7 @@
 	margin-bottom: 1rem;
 }
 
+/* Button Web Style */
 button {
 	background: none;
 	color: inherit;
@@ -23,10 +24,6 @@ button {
 .newEmployee__button>i:hover,
 .btn>i:hover {
 	color: #636363;
-}
-
-.hidden {
-	display: none;
 }
 
 /* Modal Snippet*/
@@ -132,6 +129,7 @@ button {
 	margin: 100px auto;
 }
 
+/* Input Validation Style */
 .errorValidation__tr {
 	background-color: rgb(204, 248, 204);
 }
@@ -140,6 +138,7 @@ button {
 	background-color: #f2acac;
 }
 
+/* Image Gallery */
 .form__image {
 	width: 200px;
 	height: 200px;
@@ -163,4 +162,9 @@ button {
 
 .imageSelected{
 	box-shadow:0px 12px 22px 1px #333;
+}
+
+/* Hide Class */
+.hidden {
+	display: none;
 }
