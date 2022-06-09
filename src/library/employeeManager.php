@@ -94,7 +94,7 @@ function validateEmployee($employee, &$errors)
     }
     if (!$employee['lastName']) {
         $isValid = false;
-        $errors['lastName'] = 'Name is mandatory';
+        $errors['lastName'] = 'Last Name is mandatory';
     }
     if ($employee['email'] && !filter_var($employee['email'], FILTER_VALIDATE_EMAIL)) {
         $isValid = false;

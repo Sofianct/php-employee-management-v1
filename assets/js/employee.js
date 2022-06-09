@@ -198,6 +198,7 @@ async function refreshGallery(random) {
 
 //log out button
 function logOut() {
+    const urlLoginController = './library/employeeController.php';
     const logOutBtn = document.getElementById('logout');
     logOutBtn.addEventListener('click', async () => {
         const response = await fetch(urlLoginController + '?logout', {

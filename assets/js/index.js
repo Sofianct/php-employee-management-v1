@@ -172,7 +172,8 @@ window.onload = async () => {
         const tr = document.createElement("tr");
         tr.id = "newEmployeeRow";
         //for each td insert input form
-        tr.innerHTML = `<form action="" method="post" id="newFormRow"><td><img src="../assets/images/default.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
+        tr.innerHTML = `<form action="" method="post" id="newFormRow">
+            <td><img src="../assets/images/default.jpg" class="rounded-circle" style="width: 45px; height: 45px;"></td>
             <td><input form="newFormRow" type="text" name="name" class="form-control"></td>
             <td><input form="newFormRow" type="text" name="lastName" class="form-control"></td>
             <td><input form="newFormRow" type="email" name="email" class="form-control"></td>
@@ -297,7 +298,7 @@ window.onload = async () => {
             }
         });
         if (!response.ok) {
-            toastr.error('There was an error in the request. Please refresh the borwser and try again.')
+            toastr.error('There was an error in the request. Please refresh the browser and try again.')
             return null;
         }
         const data = await response.json();
